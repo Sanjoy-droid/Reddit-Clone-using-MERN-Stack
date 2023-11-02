@@ -7,12 +7,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export const Navbar = (props) => {
-  // const [first, setfirst] = useState("booooom");
-  // setfirst("ki holo eta palta");
-
   return (
     <>
-      {/* <div className="">{first}</div> */}
       <div className="navbar flex items-center py-1 ">
         {/* Hamburger Menu */}
         <div className="hamburger-menu cursor-pointer my-1 mx-2 h-10 w-10   hover:bg-gray-700   rounded-full  px-[0.6rem] py-[0.6rem]">
@@ -28,8 +24,8 @@ export const Navbar = (props) => {
 
         {/* Serach Section */}
         <div
-          className="nav-search flex mx-2 w-[60rem] h-[42px] rounded-3xl
-          border-2 border-solid border-gray-700 hover:bg-[#000000] "
+          className="nav-search flex mx-2 w-[44rem] h-[42px] rounded-3xl
+          border-2 border-solid border-gray-700 hover:bg-[#000000] selection:bg-blue-500 selection:text-white"
         >
           <div className="search-icon w-[50px] flex items-center justify-center  rounded-l-full  text-white">
             <FontAwesomeIcon className="pl-3" icon={faMagnifyingGlass} />
@@ -42,7 +38,7 @@ export const Navbar = (props) => {
         </div>
 
         {/* Login Button */}
-        <button className=" login w-[4.4rem] h-[2.6rem] bg-[#d44612] text-white  font-medium flex justify-center items-center text-sm rounded-full mx-2 cursor-pointer hover:bg-[#d44612bd]">
+        <button className=" login w-[5rem] h-[2.6rem] bg-[#d44612] text-white  font-medium flex justify-center items-center text-sm rounded-full mx-2 cursor-pointer hover:bg-[#d44612bd]">
           Log In
         </button>
 

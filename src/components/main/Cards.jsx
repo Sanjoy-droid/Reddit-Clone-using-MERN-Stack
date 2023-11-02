@@ -6,7 +6,7 @@ import cardImage from "../card-img.webp";
 const Cards = () => {
   return (
     <>
-      <div className="main-section m-5 flex justify-between ">
+      <div className="main-section m-5 flex justify-between">
         <div className="card w-[18rem] h-52 rounded-2xl cursor-pointer bg-purple-300">
           <div className="content pt-[7rem] pl-4">
             <h1 className="title text-2xl font-bold">Top</h1>

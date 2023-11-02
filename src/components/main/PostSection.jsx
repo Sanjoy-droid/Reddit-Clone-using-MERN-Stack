@@ -4,7 +4,7 @@ let name = "harry";
 const PostSection = () => {
   return (
     <>
-      <div className="first-panel flex justify-between w-[60%] mx-8 mt-8 ">
+      <div className="first-panel flex justify-between w-[90%] mx-8 mt-8">
         <button className="h-[2.6rem] w-[7rem]  text-white border  font-medium flex justify-center items-center text-sm rounded-full cursor-pointer hover:border-zinc-200 hover:border-2">
           Create a post
         </button>
