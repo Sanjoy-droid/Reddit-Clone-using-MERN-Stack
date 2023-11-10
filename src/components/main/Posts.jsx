@@ -1,10 +1,8 @@
-import React from "react";
 import tag from "../tag.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUpLong,
   faDownLong,
-  faComment,
   faMessage,
   faArrowUpFromBracket,
 } from "@fortawesome/free-solid-svg-icons";

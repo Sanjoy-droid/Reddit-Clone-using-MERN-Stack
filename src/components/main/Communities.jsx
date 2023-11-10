@@ -1,4 +1,3 @@
-import React from "react";
 import tag from "../tag.png";
 
 const Communities = () => {

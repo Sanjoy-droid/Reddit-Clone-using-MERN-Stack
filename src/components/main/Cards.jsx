@@ -1,7 +1,5 @@
-import React from "react";
 
 import tag from "../tag.png";
-import cardImage from "../card-img.webp";
 
 const Cards = () => {
   return (

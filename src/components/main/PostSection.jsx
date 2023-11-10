@@ -1,6 +1,3 @@
-import React from "react";
-
-let name = "harry";
 const PostSection = () => {
   return (
     <>
@@ -9,7 +6,7 @@ const PostSection = () => {
           Create a post
         </button>
         <div className="menu flex justify-center items-end ">
-          <select className="serch-select rounded-full w-[3.5rem] h-[2rem] bg-[#2b3442] text-[#f1f1f1] text-sm  mx-4 cursor-pointer hover:bg-gray-800">
+          <select className="serch-select rounded-full w-[3.5rem] h-[2rem] bg-[#2b3442] text-[#f1f1f1] text-sm  mx-4  cursor-pointer hover:bg-gray-800">
             <option className="text-sm ">Hot</option>
           </select>
           <select className="serch-select rounded-full w-[3.5rem] h-[2rem] bg-[#313a48] text-white text-sm  mx-4 cursor-pointer hover:bg-gray-800">

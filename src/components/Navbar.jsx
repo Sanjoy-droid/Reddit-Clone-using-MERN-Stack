@@ -1,21 +1,32 @@
 import React, { useState } from "react";
+import Modal from "./main/Modal";
 import logo from "../components/download.png";
+import HamburgerModal from "./main/HamburgerModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export const Navbar = (props) => {
+  const [showHamburger, setShowHamburger] = useState(false);
+
+  const toggleHamburger = () => {
+    setShowHamburger(!showHamburger);
+  };
   return (
     <>
       <div className="navbar flex items-center py-1 ">
         {/* Hamburger Menu */}
-        <div className="hamburger-menu cursor-pointer my-1 mx-2 h-10 w-10   hover:bg-gray-700   rounded-full  px-[0.6rem] py-[0.6rem]">
+        <button
+          onClick={toggleHamburger}
+          className="hamburger-menu cursor-pointer my-1 mx-2 h-10 w-10   hover:bg-gray-700   rounded-full  px-[0.6rem] py-[0.6rem]"
+        >
           <div className="line h-0.5 w-5 mt-1 bg-white"></div>
           <div className="line h-0.5 w-5 mt-1 bg-white"></div>
           <div className="line h-0.5 w-5 mt-1 bg-white"></div>
-        </div>
+          <HamburgerModal
+            showHamburger={showHamburger}
+            toggleHamburger={toggleHamburger}
+          />
+        </button>
 
         {/* Logo */}
 
