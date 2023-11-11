@@ -2,15 +2,25 @@ import React, { useState } from "react";
 import Modal from "./main/Modal";
 import logo from "../components/download.png";
 import HamburgerModal from "./main/HamburgerModal";
+import LoginModal from "./main/LoginModal";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export const Navbar = (props) => {
+  // Hamburger Modal
   const [showHamburger, setShowHamburger] = useState(false);
 
   const toggleHamburger = () => {
     setShowHamburger(!showHamburger);
   };
+
+  // Login Modal
+  const [showLogin, setShowLogin] = useState(false);
+  const toggleLogin = () => {
+    setShowLogin(!showLogin);
+  };
+
   return (
     <>
       <div className="navbar flex items-center py-1 ">
@@ -27,12 +37,9 @@ export const Navbar = (props) => {
             toggleHamburger={toggleHamburger}
           />
         </button>
-
         {/* Logo */}
-
         <img src={logo} alt="" className="w-9 cursor-pointer rounded-full" />
         <p className="mx-2 text-2xl cursor-pointer text-white">{props.title}</p>
-
         {/* Serach Section */}
         <div
           className="nav-search flex mx-2 w-[44rem] h-[42px] rounded-3xl
@@ -47,14 +54,15 @@ export const Navbar = (props) => {
             placeholder="Search Reddit"
           />
         </div>
-
         {/* Login Button */}
-        <button className=" login w-[5rem] h-[2.6rem] bg-[#d44612] text-white  font-medium flex justify-center items-center text-sm rounded-full mx-2 cursor-pointer hover:bg-[#d44612bd]">
+        <div
+          onClick={toggleLogin}
+          className=" login w-[5rem] h-[2.6rem] bg-[#d44612] text-white  font-medium flex justify-center items-center text-sm rounded-full mx-2 cursor-pointer hover:bg-[#d44612bd]"
+        >
           Log In
-        </button>
-
+          <LoginModal toggleLogin={toggleLogin} showLogin={showLogin} />
+        </div>
         {/* three dots */}
-
         <button
           className="three-dots  
         cursor-pointer my-1 mr-2  h-10 w-10 flex justify-center items-center   hover:bg-gray-700   rounded-full   text-2xl   text-white"
