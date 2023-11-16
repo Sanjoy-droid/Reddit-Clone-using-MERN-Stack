@@ -2,10 +2,13 @@ import "./App.css";
 import { Navbar } from "./components/Navbar";
 import Cards from "./components/main/Cards";
 import PostSection from "./components/main/PostSection";
-import Posts from "./components/main/Posts";
+import PostCards from "./components/main/Posts";
 import Communities from "./components/main/Communities";
 import Modal from "./components/main/Modal";
 import { useState } from "react";
+
+import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
+import NewsPosts from "./components/main/NewsPosts";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -16,20 +19,31 @@ function App() {
   };
   return (
     <>
-      <div className="bg-gradient-to-r from-gray-900 to-gray-600 h-[500vh] ">
-        {/* <Modal /> */}
-        {/* components */}
+      <Router>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <div className="bg-gradient-to-r from-gray-900 to-gray-600 h-[500vh] ">
+                <Navbar className="" title="reddit" />
+                {/* <Modal /> */}
+                {/* components */}
+                <Cards />
 
-        <Navbar className="" title="reddit" />
-        <Cards />
-        <div className="flex">
-          <div>
-            <PostSection />
-            <Posts />
-          </div>
-          <Communities />
-        </div>
-      </div>
+                <div className="flex">
+                  <div>
+                    <PostSection />
+                    <PostCards />
+                  </div>
+                  <Communities />
+                </div>
+              </div>
+            }
+          />
+          <Route exact path="/newsposts" element={<NewsPosts />} />
+        </Routes>
+      </Router>
     </>
   );
 }

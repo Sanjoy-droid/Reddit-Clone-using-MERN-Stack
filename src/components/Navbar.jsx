@@ -6,6 +6,8 @@ import LoginModal from "./main/LoginModal";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import MoreModal from "./main/MoreModal";
+import { Link } from "react-router-dom";
 
 export const Navbar = (props) => {
   // Hamburger Modal
@@ -19,6 +21,12 @@ export const Navbar = (props) => {
   const [showLogin, setShowLogin] = useState(false);
   const toggleLogin = () => {
     setShowLogin(!showLogin);
+  };
+
+  // More Modal
+  const [showMore, setShowMore] = useState(false);
+  const toggleMore = () => {
+    setShowMore(!showMore);
   };
 
   return (
@@ -62,12 +70,16 @@ export const Navbar = (props) => {
           Log In
           <LoginModal toggleLogin={toggleLogin} showLogin={showLogin} />
         </div>
-        {/* three dots */}
+
+        {/* More,  three dots */}
+
         <button
+          onClick={toggleMore}
           className="three-dots  
         cursor-pointer my-1 mr-2  h-10 w-10 flex justify-center items-center   hover:bg-gray-700   rounded-full   text-2xl   text-white"
         >
           <p className="pb-4">...</p>
+          <MoreModal toggleMore={toggleMore} showMore={showMore} />
         </button>
       </div>
 

@@ -15,25 +15,30 @@ const LoginModal = ({ toggleLogin, showLogin }) => {
   if (showLogin)
     return (
       <>
+        {/* Modal  Overlay, Background of the Modal */}
         <div
           onClick={toggleLogin}
           className="modal-overlay left-0 right-0 bottom-0 top-0 fixed  cursor-default bg-black bg-opacity-40"
         ></div>
+
+        {/* Login Modal */}
         <div
           onClick={(e) => {
             e.stopPropagation();
           }}
           className="Login-modal  w-[32rem] h-[39rem] fixed right-[15rem] top-[1rem] bg-[#0a1122]   cursor-default rounded-3xl "
         >
+          {/* Close Button */}
           <div
             onClick={toggleLogin}
             className="close-btn bg-gray-700 rounded-full w-8 h-8 mt-10 ml-[28rem] flex justify-center items-center hover:bg-gray-800 cursor-pointer"
           >
             <FontAwesomeIcon icon={faXmark} size="xl" />
           </div>
+
           <div className="Login p-12">
-            <h1 className="text-4xl">Log In</h1>
-            <div className="inline-block flex-col justify-center ">
+            <h1 className="text-4xl flex justify-center">Log In</h1>
+            <div className="inline-block ml-8 ">
               <div className="bg-gray-700 mt-10 h-14 w-[22rem] rounded-3xl hover:bg-gray-800">
                 <input
                   className="bg-transparent h-full w-full pl-4 text-lg outline-none text-center"

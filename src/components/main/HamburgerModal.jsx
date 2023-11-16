@@ -45,10 +45,10 @@ const HamburgerModal = ({ toggleHamburger, showHamburger }) => {
         ></div>
         <div
           onClick={(e) => e.stopPropagation()}
-          className="hamburger-section w-[17.5rem] h-[36rem] bg-[#0a1122] fixed left-0 top-16 cursor-default rounded-lg "
+          className="hamburger-section w-[17rem] h-[36rem] bg-[#0a1122] fixed left-0 top-16 cursor-default rounded-lg "
         >
           <div
-            className={`hamburger-section w-[17.5rem] h-[36rem] fixed left-0 top-16 cursor-default rounded-lg ${
+            className={`hamburger-section w-[17rem] h-[36rem] p-1 fixed left-0 top-16 cursor-default rounded-lg ${
               recentshow && topicshow
                 ? "overflow-y-scroll max-h-[36rem] scrollbar-thin scrollbar-track-[#0a1122] scrollbar-thumb-slate-700"
                 : ""
