@@ -1,10 +1,9 @@
 import tag from "../tag.png";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-const Card = () => {
+const Cards = () => {
   return (
     <div className="card w-[18rem] h-52 rounded-2xl cursor-pointer bg-purple-300">
-      <div className="content pt-[7rem] pl-4">
+      <div className="content pt-[7rem] pl-4 ">
         <h1 className="title text-2xl font-bold">Top</h1>
         <p className="desc">Lorem ipsum ipsum dolor sitr sit . . .</p>
         <div className="tag flex  mt-2">
@@ -17,31 +16,18 @@ const Card = () => {
   );
 };
 
-const Cards = () => {
-  return (
-    <>
-      <ul className="main-section m-5 flex justify-between">
-        <li>
-          <Link to="/newsposts">
-            {" "}
-            <Card />
-          </Link>
-        </li>
-        <li>
-          <Link to="/newsposts">
-            {" "}
-            <Card />
-          </Link>
-        </li>
-        <li>
-          <Link to="/newsposts">
-            {" "}
-            <Card />
-          </Link>
-        </li>
-      </ul>
-    </>
-  );
-};
+// const Cards = () => {
+//   return (
+//     <>
+//       <ul className="main-section m-5 flex justify-between bg-green-500">
+//         <>
+//           <Card />
+//           <Card />
+//           <Card />
+//         </>
+//       </ul>
+//     </>
+//   );
+// };
 
 export default Cards;

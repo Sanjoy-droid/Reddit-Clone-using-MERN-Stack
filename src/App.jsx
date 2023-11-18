@@ -1,47 +1,39 @@
 import "./App.css";
-import { Navbar } from "./components/Navbar";
-import Cards from "./components/main/Cards";
-import PostSection from "./components/main/PostSection";
-import PostCards from "./components/main/Posts";
-import Communities from "./components/main/Communities";
-import Modal from "./components/main/Modal";
-import { useState } from "react";
+// import { Navbar } from "./components/Navbar";
+// import Cards from "./components/main/Cards";
+// import PostSection from "./components/main/PostSection";
+// import PostCards from "./components/main/PostsCards";
+// import Communities from "./components/main/Communities";
 
-import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
-import NewsPosts from "./components/main/NewsPosts";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/main/Home";
+import PostItems from "./components/main/PostItems";
+// import Test from "./components/main/Test";
+// import Home from "./components/main/Home";
+// import PostItems from "./components/main/PostItems";
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
-  const toggleModal = () => {
-    console.log("openModal state changed");
-    setShowModal(!showModal);
-    console.log(showModal);
-  };
   return (
     <>
       <Router>
         <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <div className="bg-gradient-to-r from-gray-900 to-gray-600 h-[500vh] ">
-                <Navbar className="" title="reddit" />
-                {/* <Modal /> */}
-                {/* components */}
-                <Cards />
+          <Route path="/" element={<Home />} />
+          <Route path="postitems" element={<PostItems />} />
 
-                <div className="flex">
-                  <div>
-                    <PostSection />
-                    <PostCards />
-                  </div>
-                  <Communities />
-                </div>
-              </div>
+          <Route
+            path="postitems/posts"
+            element={
+              <>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Obcaecati explicabo maiores in eum beatae accusamus nostrum
+                  soluta dolorem, libero consectetur quas laborum delectus
+                  asperiores, inventore quaerat, sed enim rerum at!
+                </p>
+              </>
             }
           />
-          <Route exact path="/newsposts" element={<NewsPosts />} />
+          {/* <Route path="test" element={<Test />} /> */}
         </Routes>
       </Router>
     </>

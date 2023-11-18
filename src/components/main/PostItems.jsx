@@ -1,14 +1,7 @@
-import React from "react";
-import { Navbar } from "../Navbar";
+import Navbar from "../Navbar";
 import tag from "../tag.png";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUpLong,
-  faDownLong,
-  faMessage,
-  faArrowUpFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
+// import Posts from "./Posts";
+// import { Link } from "react-router-dom";
 
 const BigPosts = () => {
   return (
@@ -79,7 +72,7 @@ const SmallPost = () => {
   );
 };
 
-const NewsPosts = () => {
+const PostItems = () => {
   return (
     <>
       <div className=" bg-gradient-to-r from-gray-900 to-gray-600 h-[500vh]">
@@ -87,13 +80,13 @@ const NewsPosts = () => {
         <div className="News-Posts">
           <ul className="posts-section mx-6 mt-4 w-[61%]">
             <li>
-              <BigPosts />
+              {" "}
+              <BigPosts />{" "}
             </li>
           </ul>
+
           <ul>
             <li>
-              <SmallPost />
-              <SmallPost />
               <SmallPost />
               <SmallPost />
               <SmallPost />
@@ -105,4 +98,4 @@ const NewsPosts = () => {
   );
 };
 
-export default NewsPosts;
+export default PostItems;

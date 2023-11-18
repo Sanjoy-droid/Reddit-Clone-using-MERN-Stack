@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import Modal from "./main/Modal";
+// import Modal from "./main/Modal";
 import logo from "../components/download.png";
-import HamburgerModal from "./main/HamburgerModal";
-import LoginModal from "./main/LoginModal";
+import HamburgerModal from "../components/main/HamburgerModal";
+import LoginModal from "../components/main/LoginModal";
+import MoreModal from "../components/main/MoreModal";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import MoreModal from "./main/MoreModal";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import PropTypes from "prop-types";
+// import { Link } from "react-router-dom";
 
-export const Navbar = (props) => {
+const Navbar = (props) => {
   // Hamburger Modal
   const [showHamburger, setShowHamburger] = useState(false);
 
@@ -92,3 +93,8 @@ export const Navbar = (props) => {
     </>
   );
 };
+Navbar.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+
+export default Navbar;
