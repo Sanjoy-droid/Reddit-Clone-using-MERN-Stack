@@ -6,8 +6,9 @@ import {
   faMessage,
   faArrowUpFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
+// import { Link } from "react-router-dom";
 
-const Post = () => {
+const PostCard = () => {
   return (
     <>
       <div className="post-cards    text-gray-300 pl-4    rounded-2xl cursor-pointer hover:bg-gray-800 h-[40rem]   w-[38rem] ">
@@ -83,16 +84,7 @@ const PostCards = () => {
     <>
       <ul className="PostCards-section mx-6 mt-4 w-[61%] ">
         <li>
-          <Post />
-        </li>
-        <li>
-          <Post />
-        </li>
-        <li>
-          <Post />
-        </li>
-        <li>
-          <Post />
+          <PostCard />
         </li>
       </ul>
     </>

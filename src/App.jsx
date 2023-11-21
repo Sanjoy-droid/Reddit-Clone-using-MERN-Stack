@@ -8,6 +8,8 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/main/Home";
 import PostItems from "./components/main/PostItems";
+import Posts from "./components/main/Posts";
+import UserState from "./context/userState";
 // import Test from "./components/main/Test";
 // import Home from "./components/main/Home";
 // import PostItems from "./components/main/PostItems";
@@ -15,27 +17,24 @@ import PostItems from "./components/main/PostItems";
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="postitems" element={<PostItems />} />
+      <UserState>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="postitems" element={<PostItems />} />
 
-          <Route
-            path="postitems/posts"
-            element={
-              <>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Obcaecati explicabo maiores in eum beatae accusamus nostrum
-                  soluta dolorem, libero consectetur quas laborum delectus
-                  asperiores, inventore quaerat, sed enim rerum at!
-                </p>
-              </>
-            }
-          />
-          {/* <Route path="test" element={<Test />} /> */}
-        </Routes>
-      </Router>
+            <Route
+              path="postitems/posts"
+              element={
+                <>
+                  <Posts />
+                </>
+              }
+            />
+            {/* <Route path="test" element={<Test />} /> */}
+          </Routes>
+        </Router>
+      </UserState>
     </>
   );
 }

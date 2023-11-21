@@ -16,18 +16,4 @@ const Cards = () => {
   );
 };
 
-// const Cards = () => {
-//   return (
-//     <>
-//       <ul className="main-section m-5 flex justify-between bg-green-500">
-//         <>
-//           <Card />
-//           <Card />
-//           <Card />
-//         </>
-//       </ul>
-//     </>
-//   );
-// };
-
 export default Cards;

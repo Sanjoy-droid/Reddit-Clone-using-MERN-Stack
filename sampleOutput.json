@@ -1,0 +1,267 @@
+{
+  "status": "ok",
+  "totalResults": 64,
+  "articles": [
+    {
+      "source": {
+        "id": "cnn",
+        "name": "CNN"
+      },
+
+      "author": "By <a href=\"/profiles/jackie-wattles\">Jackie Wattles</a>, CNN",
+      "title": "SpaceX Starship launch: Live updates - CNN",
+      "description": "SpaceX will make its second attempt to successfully launch Starship, a gargantuan rocket designed to carry humans to the moon and Mars.",
+      "url": "https://www.cnn.com/world/live-news/spacex-starship-launch-scn/index.html",
+      "urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/231115200448-spacex-starship-prepare-111523-super-tease.jpg",
+      "publishedAt": "2023-11-18T16:20:00Z",
+      "content": "SpaceX did not finish the entire mission, and both the Starship spacecraft and Super Heavy booster exploded over the ocean.\r\nBut there were some big highlights for SpaceX. \r\nThe rocket made it much f… [+2333 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Tom's Guide"
+      },
+      "author": "Louis Ramirez",
+      "title": "Target Black Friday sales 2023 — 15 massive sales live just for this weekend - Tom's Guide",
+      "description": "The best Target Black Friday deals to shop now",
+      "url": "https://www.tomsguide.com/deals/target-black-friday-sales-2023-15-massive-sales-live-just-for-this-weekend",
+      "urlToImage": "https://cdn.mos.cms.futurecdn.net/odMfe9HRG4qRFRopmsv82L-1200-80.jpg",
+      "publishedAt": "2023-11-18T15:53:18Z",
+      "content": "Target's Black Friday deals are officially live. The retailer is offering aggressive discounts on smart home devices, toys, kitchen appliances, and 4K TVs. I also want to call out that all of Target'… [+696 chars]"
+    },
+    {
+      "source": {
+        "id": "reuters",
+        "name": "Reuters"
+      },
+      "author": "Reuters",
+      "title": "Elon Musk, under fire, threatens lawsuit against media watchdog - Reuters",
+      "description": "Elon Musk threatened on Saturday to sue media watchdog Media Matters and those who attacked his social media platform X, following moves by several large U.S. companies to halt advertising on the site after being promoted alongside antisemitic content.",
+      "url": "https://www.reuters.com/legal/x-corp-file-lawsuit-against-media-watchdog-others-musk-2023-11-18/",
+      "urlToImage": "https://www.reuters.com/resizer/OaLbDr1AOtN2h30kifIiNJ8EndA=/1200x628/smart/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/QHY34WZBZJLPHLJ4UCVNDDOFEE.jpg",
+      "publishedAt": "2023-11-18T15:07:00Z",
+      "content": "Nov 18 (Reuters) - Elon Musk threatened on Saturday to sue media watchdog Media Matters and those who attacked his social media platform X, following moves by several large U.S. companies to halt adv… [+3040 chars]"
+    },
+    {
+      "source": {
+        "id": "axios",
+        "name": "Axios"
+      },
+      "author": "Axios",
+      "title": "Microsoft is a key investor in OpenAI. It was blindsided by Sam Altman's exit. - Axios",
+      "description": null,
+      "url": "https://www.axios.com/2023/11/17/microsoft-openai-sam-altman-ouster",
+      "urlToImage": null,
+      "publishedAt": "2023-11-18T13:38:04Z",
+      "content": null
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CNBC"
+      },
+      "author": "Leslie Josephs",
+      "title": "Airlines brace for record Thanksgiving air travel - CNBC",
+      "description": "Thanksgiving will be a test to see how the aviation industry handles the year-end holidays while still managing strains.",
+      "url": "https://www.cnbc.com/2023/11/18/thanksgiving-flights-bring-record-numbers-of-passengers.html",
+      "urlToImage": "https://image.cnbcfm.com/api/v1/image/107172178-1672324259458-gettyimages-1245859300-AA_29122022_1005824.jpeg?v=1672324335&w=1920&h=1080",
+      "publishedAt": "2023-11-18T13:00:02Z",
+      "content": "Airlines expect record travel demand this Thanksgiving. Executives say they're prepared for the hordes.\r\nThe Transportation Security Administration expects to screen 30 million passengers from Nov. 1… [+3859 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Forbes"
+      },
+      "author": "Chloe Sorvino",
+      "title": "Turkey Day Dinner, Brought To You By America's Biggest Privately Held Company - Forbes",
+      "description": "A single agri-business behemoth dominates the Thanksgiving-industrial complex.",
+      "url": "https://www.forbes.com/sites/chloesorvino/2023/11/18/turkey-day-dinner-brought-to-you-by-americas-biggest-privately-held-company/",
+      "urlToImage": "https://imageio.forbes.com/specials-images/imageserve/6557e2170e5cdc392921f6f0/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
+      "publishedAt": "2023-11-18T11:30:00Z",
+      "content": "ILLUSTRATION BY FORBES; PHOTO BY H. ARMSTRONG ROBERTS/CLASSICSTOCK/GETTY IMAGES\r\nA single agri-business behemoth dominates the Thanksgiving-industrial complex.\r\nTheres hardly a forkful of Thanksgivin… [+5633 chars]"
+    },
+    {
+      "source": {
+        "id": "axios",
+        "name": "Axios"
+      },
+      "author": "Axios",
+      "title": "Walmart CEO expects pockets of price deflation - Axios",
+      "description": null,
+      "url": "https://www.axios.com/2023/11/17/walmart-ceo-deflation-inflation-food-prices-down",
+      "urlToImage": null,
+      "publishedAt": "2023-11-18T07:41:28Z",
+      "content": null
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "NBC 5 Dallas-Fort Worth"
+      },
+      "author": "Philip Jankowski, The Dallas Morning News",
+      "title": "ERCOT cancels program to boost power reserves ahead of potentially precarious winter - NBC 5 Dallas-Fort Worth",
+      "description": "ERCOT has canceled a program to boost power reserves for what could be a precarious winter for Texas’ electric grid after no energy companies volunteered to fire up their shuttered plants.",
+      "url": "http://www.nbcdfw.com/news/local/texas-news/ercot-cancels-program-to-boost-power-reserves-ahead-of-potentially-precarious-winter/3390785/",
+      "urlToImage": "https://media.nbcdfw.com/2021/02/ERCOT-2.jpg?quality=85&strip=all&resize=1200%2C675",
+      "publishedAt": "2023-11-18T02:31:59Z",
+      "content": "ERCOT has canceled a program to boost power reserves for what could be a precarious winter for Texas electric grid after no energy companies volunteered to fire up their shuttered plants.\r\nThe Electr… [+729 chars]"
+    },
+    {
+      "source": {
+        "id": "financial-times",
+        "name": "Financial Times"
+      },
+      "author": "Jennifer Hughes, Antoine Gara",
+      "title": "Short seller Jim Chanos to close his main hedge funds - Financial Times",
+      "description": "Legendary bear says interest in fundamental stockpicking has waned",
+      "url": "https://www.ft.com/content/68d3a4cc-322e-421d-99d9-6657b21f7044",
+      "urlToImage": null,
+      "publishedAt": "2023-11-18T01:46:46Z",
+      "content": "What is included in my trial?\r\nDuring your trial you will have complete digital access to FT.com with everything in both of our Standard Digital and Premium Digital packages.\r\nStandard Digital includ… [+1494 chars]"
+    },
+    {
+      "source": {
+        "id": "usa-today",
+        "name": "USA Today"
+      },
+      "author": "Amaris Encinas",
+      "title": "Here's why Amazon pulled certain eye drop products after FDA letter - USA TODAY",
+      "description": "After the FDA issued warning letter to Amazon over seven eye drop products that have been sold to consumers recently, the company pulled the products.",
+      "url": "https://www.usatoday.com/story/news/health/2023/11/17/eye-drops-removed-amazon-fda-warning/71626843007/",
+      "urlToImage": "https://www.usatoday.com/gcdn/authoring/authoring-images/2023/11/18/USAT/71627017007-getty-images-200300527002.jpg?crop=2121,1193,x0,y109&width=2121&height=1193&format=pjpg&auto=webp",
+      "publishedAt": "2023-11-18T01:20:49Z",
+      "content": "Amazon has voluntarily pulled seven eye drop brands off their shelves in response to a warning letter issued by the Food &amp; Drug Administration over potential safety concerns. \r\nThe eye drops, mar… [+3033 chars]"
+    },
+    {
+      "source": {
+        "id": "reuters",
+        "name": "Reuters"
+      },
+      "author": "Sinéad Carew, Shristi A",
+      "title": "Wall Street barely gains as traders digest earlier gains, Fed comments - Reuters",
+      "description": "Wall Street's three major indexes edged up slightly on Friday as investors digested recent gains while remarks from Federal Reserve officials clouded the outlook about when the U.S. central bank might start cutting interest rates.",
+      "url": "https://www.reuters.com/markets/us/futures-drift-higher-yields-slip-2023-11-17/",
+      "urlToImage": "https://www.reuters.com/resizer/dvAUqLuD0Q44xP28vpB4miFMLn0=/1200x628/smart/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/IOFI3HWZCBNZJAUMGFNY55KRVQ.jpg",
+      "publishedAt": "2023-11-18T00:50:00Z",
+      "content": "Nov 17 (Reuters) - Wall Street's three major indexes edged up slightly on Friday as investors digested recent gains while remarks from Federal Reserve officials clouded the outlook about when the U.S… [+4521 chars]"
+    },
+    {
+      "source": {
+        "id": "the-hill",
+        "name": "The Hill"
+      },
+      "author": "Joe Jacquez",
+      "title": "Nearly 250K vehicles recalled by Honda over concerns of engines stalling - The Hill",
+      "description": "Nearly 250,000 vehicles have been recalled by Honda over concerns of engines stalling, according to documents posted by the National Highway Traffic Safety Administration on Friday. A manufacturing error could cause connected rod bearings to wear and seize, d…",
+      "url": "https://thehill.com/homenews/4316018-nearly-250k-vehicles-recalled-honda/",
+      "urlToImage": "https://thehill.com/wp-content/uploads/sites/2/2023/02/honda_011923gn2_w.jpg?w=1280",
+      "publishedAt": "2023-11-18T00:43:00Z",
+      "content": "Skip to content\r\nNearly 250,000 vehicles have been recalled by Honda over concerns of engines stalling, according to documents posted by the National Highway Traffic Safety Administration on Friday.\r… [+1052 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "CoinDesk"
+      },
+      "author": "Nick Baker",
+      "title": "Fidelity Wants to Create an Ether ETF, Joining BlackRock in Doubling Down on Crypto - CoinDesk",
+      "description": "Fidelity, BlackRock and other financial firms want to list BTC and ETH ETFs, which could make it easier for investors to invest in crypto.",
+      "url": "https://www.coindesk.com/business/2023/11/17/fidelity-wants-to-create-an-ether-etf-joining-blackrock-in-doubling-down-on-crypto/",
+      "urlToImage": "https://www.coindesk.com/resizer/W22ApAcTJWQRK7Ew6dowvoyCO6g=/1200x628/center/middle/cloudfront-us-east-1.images.arcpublishing.com/coindesk/Q732EEHEMZEW3JFZZ3YUBMVQB4.jpg",
+      "publishedAt": "2023-11-17T22:46:00Z",
+      "content": "<ul><li>Fidelity became the latest giant financial firm to seek to create an ether ETF.\r\n</li><li>The SEC still needs to approve these applications for them to trade in the U.S. The regulator is mull… [+1499 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Yahoo Entertainment"
+      },
+      "author": "Upwallstreet",
+      "title": "Cisco's Fallout Outlook Overshadowed Its Quarterly Results - Yahoo Finance",
+      "description": "Cisco Systems Inc (NASDAQ: CSCO) topped profit expectations with its quarterly results but slashed its fiscal year earnings outlook on the account of its...",
+      "url": "https://finance.yahoo.com/news/ciscos-fallout-outlook-overshadowed-quarterly-224156037.html",
+      "urlToImage": "https://media.zenfs.com/en/Benzinga/6c62464e6df7fcd719507feed9fe7b5e",
+      "publishedAt": "2023-11-17T22:41:56Z",
+      "content": "Cisco Systems Inc (NASDAQ: CSCO) topped profit expectations with its quarterly results but slashed its fiscal year earnings outlook on the account of its consumers being busy implementing the offerin… [+2843 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Decrypt"
+      },
+      "author": "Mat Di Salvo",
+      "title": "WisdomTree Adds Coinbase as Custodian for Bitcoin ETF - Decrypt",
+      "description": "America’s biggest crypto exchange is a favorite among traditional finance firms vying for a spot BTC product.",
+      "url": "https://decrypt.co/206548/wisdomtree-coinbase-custodian-bitcoin-etf",
+      "urlToImage": "https://cdn.decrypt.co/resize/1024/height/512/wp-content/uploads/2022/07/coinbase-nft-nyc-gID_1.jpeg",
+      "publishedAt": "2023-11-17T22:36:03Z",
+      "content": "Americas biggest cryptocurrency exchange Coinbase has been again chosen by one of the contenders in the spot Bitcoin ETF race. \r\nNew York asset manager WisdomTree submitted a revised version of its a… [+1554 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Jalopnik"
+      },
+      "author": "Lawrence Hodge",
+      "title": "All The New Cars Coming In 2024 And Beyond We Saw At The LA Auto Show - Jalopnik",
+      "description": "There are a few models we can look forward to seeing at dealerships next year.",
+      "url": "https://jalopnik.com/all-the-new-cars-coming-in-2024-and-beyond-we-saw-at-th-1851032338",
+      "urlToImage": "https://i.kinja-img.com/image/upload/c_fill,h_675,pg_1,q_80,w_1200/4edf477d4595fb99cc52b8747cb6f82c.jpg",
+      "publishedAt": "2023-11-17T22:20:00Z",
+      "content": "Honestly, I wasnt sold on this Frontier Hardbody Edition when it was first announced. After seeing it in person however, it made me a believer. The special edition of the Frontier made to pay tribute… [+301 chars]"
+    },
+    {
+      "source": {
+        "id": "reuters",
+        "name": "Reuters"
+      },
+      "author": "Reuters",
+      "title": "Nikola CFO to resign less than a year after joining - Reuters",
+      "description": "Electric-truck maker Nikola <a href=\"https://www.reuters.com/markets/companies/NKLA.O\" target=\"_blank\">(NKLA.O)</a> said on Friday Chief Financial Officer Anastasiya Pasterick would resign to \"pursue other opportunities\" less than a year after joining the los…",
+      "url": "https://www.reuters.com/business/autos-transportation/nikola-cfo-anastasiya-pasterick-resign-2023-11-17/",
+      "urlToImage": "https://www.reuters.com/resizer/j2xeik1Mp0100dUykJ2kdIvOEDo=/1200x628/smart/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/2MQU552FHBI3RFSTVGFVPDF5YY.jpg",
+      "publishedAt": "2023-11-17T22:15:00Z",
+      "content": "Nov 17 (Reuters) - Electric-truck maker Nikola (NKLA.O) said on Friday Chief Financial Officer Anastasiya Pasterick would resign to \"pursue other opportunities\" less than a year after joining the los… [+1159 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "MarketWatch"
+      },
+      "author": "Ryan Shrout",
+      "title": "How Microsoft's new chip for AI could disrupt Nvidia, AMD and Intel - MarketWatch",
+      "description": "Microsoft can now fully control its future",
+      "url": "https://www.marketwatch.com/story/how-microsofts-new-chip-for-ai-could-upset-nvidia-amd-intel-and-other-big-tech-players-032ffe47",
+      "urlToImage": "https://images.mktw.net/im-774720/social",
+      "publishedAt": "2023-11-17T21:36:00Z",
+      "content": "Microsoft earlier this week took the wraps off one of the more important reveals in the chip market in a long time. Microsoft MSFT now has both a custom-designed AI processing chip and a custom Arm-b… [+332 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Investor's Business Daily"
+      },
+      "author": "Investor's Business Daily",
+      "title": "GPS Stock Spikes 30% On Gap Earnings; ROST Stock Breaks Out - Investor's Business Daily",
+      "description": "GPS stock is on track for its best gain since June 2020 after retailer Gap trounced earnings. ROST stock breaks out on Ross results.",
+      "url": "https://www.investors.com/news/gps-stock-spikes-19-on-gap-earnings-rost-stock-poised-for-breakout/",
+      "urlToImage": "https://www.investors.com/wp-content/uploads/2017/11/stock-GAP-01-shutter.jpg",
+      "publishedAt": "2023-11-17T21:11:00Z",
+      "content": "GPS stock spiked more than 30% Friday after Gap (GPS) trounced Q3 earnings views in the morning. Ross Stores (ROST) broke out on its results.\r\nXGap Earnings\r\nGap reported a 16.9% drop in adjusted ear… [+3605 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Investor's Business Daily"
+      },
+      "author": "Investor's Business Daily",
+      "title": "New Highs: AI Leader, Dow Giant Hit Buy Points - Investor's Business Daily",
+      "description": "This data analytics stock hit a new high and is in the buy zone.",
+      "url": "https://www.investors.com/stock-lists/new-highs/new-highs-ai-leader-palantir-and-dow-jones-giant-visa-hit-buy-points/",
+      "urlToImage": "https://www.investors.com/wp-content/uploads/2020/09/Stock-Palantir-01-shutt.jpg",
+      "publishedAt": "2023-11-17T21:06:00Z",
+      "content": "Palantir Technologies (PLTR) hit new highs on Friday as it continues its post-earnings rally. And Dow Jones payments giant Visa (V) also hit a new high as it broke out past its latest buy point.\r\nXPa… [+1948 chars]"
+    }
+  ]
+}

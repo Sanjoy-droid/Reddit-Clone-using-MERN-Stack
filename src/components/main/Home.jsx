@@ -36,7 +36,15 @@ const Home = () => {
         <div className="flex">
           <div>
             <PostSection />
-            <PostCards />
+            <Link to="/postitems/posts">
+              <PostCards />
+            </Link>
+            <Link to="/postitems/posts">
+              <PostCards />
+            </Link>
+            <Link to="/postitems/posts">
+              <PostCards />
+            </Link>
           </div>
           <Communities />
         </div>

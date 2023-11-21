@@ -1,7 +1,7 @@
 import Navbar from "../Navbar";
 import tag from "../tag.png";
 // import Posts from "./Posts";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const BigPosts = () => {
   return (
@@ -81,7 +81,9 @@ const PostItems = () => {
           <ul className="posts-section mx-6 mt-4 w-[61%]">
             <li>
               {" "}
-              <BigPosts />{" "}
+              <Link to="/postitems/posts">
+                <BigPosts />
+              </Link>
             </li>
           </ul>
 
