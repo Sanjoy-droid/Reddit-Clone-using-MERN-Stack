@@ -1,14 +1,47 @@
 import tag from "../tag.png";
 
-const Cards = () => {
+const Cards = (props) => {
+  const { post } = props;
+
+  // title truncation
+  const truncateTitle = (title, maxLength) => {
+    if (title.length > maxLength) {
+      return `${title.substring(0, maxLength)}...`;
+    }
+    return title;
+  };
+  const postTitle = truncateTitle(post.title, 50); // Truncate after 50 characters
+
+  // description truncation
+  const truncateDescription = (description, maxLength) => {
+    if (description.length > maxLength) {
+      return `${description.substring(0, maxLength)}...`;
+    }
+    return description;
+  };
+  const postDescription = truncateDescription(post.description, 120); // Truncate after 120 characters
+
+  // tag truncation
+  const truncateTag = (tag, maxLength) => {
+    if (tag.length > maxLength) {
+      return `${tag.substring(0, maxLength)}...`;
+    }
+    return tag;
+  };
+  const postTag = truncateTag(post.tag, 20); // Truncate after 120 characters
+
   return (
     <div className="card w-[18rem] h-52 rounded-2xl cursor-pointer bg-purple-300">
-      <div className="content pt-[7rem] pl-4 ">
-        <h1 className="title text-2xl font-bold">Top</h1>
-        <p className="desc">Lorem ipsum ipsum dolor sitr sit . . .</p>
-        <div className="tag flex  mt-2">
+      <div className="content pt-4 pl-4 flex-col justify-evenly">
+        <h1 className="title text-lg font-bold  w-fit h-fit">{postTitle}</h1>
+        <p className="desc text-base overflow-hidden text-ellipsis ">
+          {postDescription}
+        </p>
+        <div className="tag flex  mt-2  ">
           <img src={tag} alt="" className="w-6 h-6 rounded-full" />
-          <p className="text-sm ml-2">r/sports</p>
+          <p className="text-sm ml-2 text-ellipsis overflow-hidden">
+            r/{postTag}
+          </p>
           <p className="ml-2 text-gray-700 text-sm"> and more</p>
         </div>
       </div>

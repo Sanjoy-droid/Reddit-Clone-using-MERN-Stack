@@ -6,12 +6,21 @@ import {
   faMessage,
   faArrowUpFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-// import { Link } from "react-router-dom";
+const PostCard = (props) => {
+  const { post } = props;
 
-const PostCard = () => {
+  // title truncation
+  const truncateTitle = (title, maxLength) => {
+    if (title.length > maxLength) {
+      return `${title.substring(0, maxLength)}...`;
+    }
+    return title;
+  };
+  const postTitle = truncateTitle(post.title, 45); // Truncate after 45 characters
+
   return (
     <>
-      <div className="post-cards    text-gray-300 pl-4    rounded-2xl cursor-pointer hover:bg-gray-800 h-[40rem]   w-[38rem] ">
+      <div className="posts    text-gray-300 pl-4 rounded-2xl cursor-pointer  h-[28rem]   w-[38.5rem] hover:bg-gray-800  ">
         <div className="credit-bar flex pt-4 ">
           <img
             src={tag}
@@ -28,16 +37,18 @@ const PostCard = () => {
             Join
           </button>
           <button
-            className="three-dots  
+            className="three-dots
         cursor-pointer ml-2 mt-[-0.3rem] h-10 w-10 flex justify-center items-center   hover:bg-gray-700   rounded-full   text-2xl   text-white "
           >
             <p className="pb-5">...</p>
           </button>
         </div>
-        <div className="title">
-          <p className="font-bold text-2xl font-white p-1">Title of the post</p>
+        <div className="title ">
+          <p className="font-bold text-2xl font-white p-1">{postTitle}</p>
         </div>
-        <div className="image h-[31rem] w-[97%] rounded-2xl bg-orange-950 "></div>
+        <div className="image h-[18rem] w-[97%] rounded-2xl bg-orange-950 p-4 mt-2 ">
+          {post.description}
+        </div>
 
         <div className="interactons mt-2 flex itmes-center ml-1">
           {/* votes section */}
@@ -66,29 +77,29 @@ const PostCard = () => {
           </div>
         </div>
       </div>
-
-      {/* Small Line  */}
-
-      <div
-        className="line-1 
-           border-b my-1 border-gray-500 mx-5 w-[35rem] "
-      ></div>
     </>
   );
 };
 
-const PostCards = () => {
-  //w-[38rem]
-  // ]
+const PostCards = (props) => {
+  const { post } = props;
   return (
     <>
-      <ul className="PostCards-section mx-6 mt-4 w-[61%] ">
+      <ul className="PostCards-section mx-6 mt-8 w-[55%] inline-block ">
         <li>
-          <PostCard />
+          {" "}
+          <PostCard post={post} />
+          <div
+            className="line mx-2 mt-2 w-[37rem]
+border-b border-gray-500
+           "
+          ></div>
+          {/*  */}
         </li>
       </ul>
     </>
   );
 };
-
 export default PostCards;
+
+// post={post}

@@ -4,7 +4,7 @@ const router = express.Router();
 const Posts = require("../models/Posts");
 const { body, validationResult } = require("express-validator");
 
-// Route 1: Add new Post using POST "/api/auth/addpost". Login required
+// Add new Post using POST "/api/auth/addpost". Login required
 
 router.post(
   "/addpost",
@@ -63,6 +63,13 @@ router.delete("/deletepost/:id", fetchuser, async (req, res) => {
     console.log(error.message);
     res.status(500).send("internal server error");
   }
+});
+
+// Fetch all Posts using GET: "/api/auth/fetchallposts"
+
+router.get("/fetchallposts", fetchuser, async (req, res) => {
+  const posts = await Posts.find({ user: req.user.id });
+  res.json(posts);
 });
 
 module.exports = router;

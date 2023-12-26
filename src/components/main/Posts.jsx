@@ -1,5 +1,3 @@
-// import { Link } from "react-router-dom";
-
 import tag from "../tag.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,11 +8,20 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../Navbar";
+import { useParams } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import postContext from "../../context/posts/postContext";
 
-const Post = () => {
+const Post = (props) => {
+  const { post } = props;
+
+  const upVoteCount = parseInt(post.upVote);
+  const downVoteCount = parseInt(post.downVote);
+  const commentCount = parseInt(post.comment);
+
   return (
     <>
-      <div className="posts    text-gray-300 pl-4 rounded-2xl cursor-pointer  h-[40rem]   w-[38rem] bg-gray-800 ">
+      <div className="big-posts    text-gray-300 pl-4    rounded-2xl cursor-pointer hover:bg-gray-800 h-[31rem]   w-[38rem] mt-1">
         <div className="credit-bar flex pt-4 ">
           <img
             src={tag}
@@ -22,43 +29,48 @@ const Post = () => {
             className="w-6 h-6 rounded-full cursor-pointer"
           />
           <p className="text-sm ml-2 cursor-pointer hover:text-blue-300">
-            r/health
+            r/{post.tag}
           </p>
           <p className="text-gray-400 text-sm ml-2 cursor-pointer ">
             . 5 hr. ago
           </p>
-          <button className="join ml-[21rem] bg-blue-800 text-sm font-semibold h-6 w-12 rounded-full hover:bg-blue-600">
-            Join
-          </button>
-          <button
-            className="three-dots  
-        cursor-pointer ml-2 mt-[-0.3rem] h-10 w-10 flex justify-center items-center   hover:bg-gray-700   rounded-full   text-2xl   text-white "
-          >
-            <p className="pb-5">...</p>
-          </button>
         </div>
-        <div className="title">
-          <p className="font-bold text-2xl font-white p-1">Title of the post</p>
-        </div>
-        <div className="image h-[31rem] w-[97%] rounded-2xl bg-orange-950 "></div>
 
-        <div className="interactons mt-2 flex itmes-center ml-1">
+        <div className="title">
+          {post && post.title && (
+            <p className="font-bold text-2xl font-white p-1">{post.title}</p>
+          )}
+        </div>
+
+        <div className="image h-[19rem] w-[97%] rounded-2xl bg-gray-700 border-2 border-gray-500 my-4 ">
+          {post && post.description && (
+            <p className="font-medium text-lg font-white p-4">
+              {post.description}
+            </p>
+          )}
+        </div>
+
+        {/* interactions  */}
+
+        <div className="interactons mt-4 flex itmes-center ml-1">
           {/* votes section */}
 
           <div className="votes bg-gray-600 w-20 h-8 flex justify-evenly items-center rounded-2xl ">
             <FontAwesomeIcon className="hover:text-red-700" icon={faUpLong} />
-            <p className="text-sm"> 351</p>
+
+            <p className="text-sm">{upVoteCount}</p>
             <FontAwesomeIcon
               className="hover:text-violet-700"
               icon={faDownLong}
             />
+            <p className="text-sm">{downVoteCount}</p>
           </div>
 
           {/* comment section */}
 
           <div className="comment h-8 w-16 ml-4 bg-gray-600 rounded-2xl flex justify-evenly items-center hover:bg-gray-500">
             <FontAwesomeIcon icon={faMessage} />
-            <p className="text-sm">22</p>
+            <p className="text-sm">{commentCount}</p>
           </div>
 
           {/* share section */}
@@ -69,6 +81,11 @@ const Post = () => {
           </div>
         </div>
       </div>
+      {/* Small Line  */}
+      <div
+        className="line-1 
+           border-b border-gray-600 mt-2 w-[38rem] "
+      ></div>
     </>
   );
 };
@@ -129,13 +146,24 @@ const Comment = () => {
 };
 
 const Posts = () => {
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
+  }, []); // The empty dependency array ensures this effect runs only once when the component mounts
+
+  const context = useContext(postContext);
+  const { posts, setPosts } = context;
+
+  const { id } = useParams();
+
+  const post = posts.find((post) => post._id === id);
   return (
     <>
       <div className="bg-gradient-to-r from-gray-900 to-gray-700 h-[500vh] ">
-        <Navbar />
+        <Navbar title="reddit" />
 
         <div className="p-8">
-          <Post />
+          <Post post={post} />
 
           {/* Add Comments */}
           <AddComment />
@@ -143,6 +171,7 @@ const Posts = () => {
           {/* Comments */}
           <Comment />
           <Comment />
+
           <Comment />
         </div>
       </div>

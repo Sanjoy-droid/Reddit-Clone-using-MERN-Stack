@@ -1,55 +1,39 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import postContext from "../../context/posts/postContext";
 import { useNavigate } from "react-router-dom";
-import SignupModal from "./SignupModal";
 
-const LoginModal = () => {
-  // useEffect(() => {
-  //   // Add or remove a class to the body based on the modal visibility
-  //   document.body.style.overflow = showLogin ? "hidden" : "auto";
-
-  //   // Cleanup function to reset the body style when the component is unmounted
-  //   return () => {
-  //     document.body.style.overflow = "auto";
-  //   };
-  // }, [showLogin]);
-
-  // submit function
-  // const context = useContext(postContext);
-  // const { posts } = context;
-  // useEffect(() => {
-  //   getPost();
-  // }, []);
-
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+const SignupModal = () => {
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  let navigate = useNavigate();
 
   // onsubmit interactions
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/auth/login", {
+    const { name, email, password } = credentials;
+    const response = await fetch("http://localhost:5000/api/auth/createuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: credentials.email,
-        password: credentials.password,
+        name,
+        email,
+        password,
       }),
     });
     const json = await response.json();
     console.log(json);
-    if (json.success) {
-      localStorage.setItem("token", json.authtoken);
-    } else {
-      alert("Invalid token");
-    }
+    localStorage.setItem("token", json.authtoken);
+    navigate("/");
   };
 
-  const onchange = (e) => {
+  const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
@@ -61,7 +45,7 @@ const LoginModal = () => {
           <div className="modal-overlay left-0 right-0 bottom-0 fixed top-0 cursor-default  bg-opacity-40"></div>
         </>
 
-        {/* Login Modal */}
+        {/* Sign Up Modal */}
         <div
           className="Login-modal w-[32rem] h-[39rem] fixed right-[15rem] top-[1rem] bg-[#0a1122] cursor-default rounded-3xl"
           // onClick={(e) => {
@@ -77,10 +61,24 @@ const LoginModal = () => {
 
             <div className="Login p-12">
               <h1 className="text-4xl flex justify-center text-white">
-                Log In
+                Create Account
               </h1>
               <div className="inline-block ml-8 text-white">
+                {/* Name */}
                 <div className="bg-gray-700  mt-10 h-14 w-[22rem] rounded-3xl hover:bg-gray-800 outline-none">
+                  <input
+                    className="bg-transparent h-full w-full pl-4 text-lg outline-none text-center"
+                    type="name"
+                    id="name"
+                    name="name"
+                    placeholder="Choose Your Username"
+                    autoComplete="current-username"
+                    value={credentials.name} // Use `value` to keep it in sync with state
+                    onChange={onChange} // Add the onChange handler
+                  />
+                </div>
+                {/* Email */}
+                <div className="bg-gray-700 mt-4  h-14 w-[22rem] rounded-3xl hover:bg-gray-800 outline-none">
                   <input
                     className="bg-transparent h-full w-full pl-4 text-lg outline-none text-center"
                     type="email"
@@ -89,7 +87,7 @@ const LoginModal = () => {
                     placeholder=" Enter Your Email"
                     autoComplete="current-email"
                     value={credentials.email}
-                    onChange={onchange}
+                    onChange={onChange}
                   />
                 </div>
                 <div className="bg-gray-700 mt-4 h-14 w-[22rem] rounded-3xl hover:bg-gray-800">
@@ -100,7 +98,7 @@ const LoginModal = () => {
                     name="password"
                     placeholder="Enter Your Password"
                     value={credentials.password}
-                    onChange={onchange}
+                    onChange={onChange}
                   />
                 </div>
               </div>
@@ -108,23 +106,13 @@ const LoginModal = () => {
 
             {/* Login Button */}
             <button className="login w-[20rem] h-[2.6rem] bg-[#d44612bd] text-white font-medium flex justify-center items-center text-sm rounded-full mx-[6rem] my-6 cursor-pointer hover:bg-[#d44612]">
-              Log In
+              Sign Up
             </button>
           </form>
-          <div className="flex justify-center text-white">
-            New Here?{" "}
-            <div className="ml-2 ">
-              <Link to="/signup">
-                <p className="text-blue-500 cursor-pointer hover:text-blue-400">
-                  Sign Up
-                </p>
-              </Link>
-            </div>
-          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default LoginModal;
+export default SignupModal;

@@ -1,40 +1,38 @@
 import "./App.css";
-// import { Navbar } from "./components/Navbar";
-// import Cards from "./components/main/Cards";
-// import PostSection from "./components/main/PostSection";
-// import PostCards from "./components/main/PostsCards";
-// import Communities from "./components/main/Communities";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/main/Home";
 import PostItems from "./components/main/PostItems";
 import Posts from "./components/main/Posts";
-import UserState from "./context/userState";
-// import Test from "./components/main/Test";
-// import Home from "./components/main/Home";
-// import PostItems from "./components/main/PostItems";
+import PostState from "./context/posts/PostState";
+import Test from "./components/main/Test";
+import LoginModal from "./components/main/LoginModal";
+import SignupModal from "./components/main/SignupModal";
 
 function App() {
   return (
     <>
-      <UserState>
+      <PostState>
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="postitems" element={<PostItems />} />
+            <Route exact path="/postitems/:id" element={<PostItems />} />
 
             <Route
-              path="postitems/posts"
+              exact
+              path="/postitems/posts/:id"
               element={
                 <>
                   <Posts />
                 </>
               }
             />
-            {/* <Route path="test" element={<Test />} /> */}
+            <Route exact path="/login" element={<LoginModal />} />
+            <Route exact path="/signup" element={<SignupModal />} />
+
+            <Route exact path="/togin" element={<Test />} />
           </Routes>
         </Router>
-      </UserState>
+      </PostState>
     </>
   );
 }
