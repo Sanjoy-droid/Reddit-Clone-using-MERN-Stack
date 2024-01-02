@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-const SignupModal = () => {
+const SignupModal = (props) => {
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -29,8 +29,13 @@ const SignupModal = () => {
     });
     const json = await response.json();
     console.log(json);
-    localStorage.setItem("token", json.authtoken);
-    navigate("/");
+    if (json.success) {
+      localStorage.setItem("token", json.authtoken);
+      props.showAlert("Account Created Successfully", "success");
+      navigate("/");
+    } else {
+      props.showAlert("Invalid credentials", "Error");
+    }
   };
 
   const onChange = (e) => {
@@ -55,7 +60,10 @@ const SignupModal = () => {
           <form onSubmit={handleSubmit}>
             {/* Close Button */}
 
-            <div className="close-btn text-white bg-gray-700 rounded-full w-8 h-8 mt-10 ml-[28rem] flex justify-center items-center hover:bg-gray-800 cursor-pointer">
+            <div
+              className="close-btn text-white bg-gray-700 rounded-full w-8 h-8 mt-10 ml-[28rem] flex justify-center items-center hover:bg-gray-800 cursor-pointer"
+              onClick={() => navigate("/")}
+            >
               <FontAwesomeIcon icon={faXmark} size="xl" />
             </div>
 

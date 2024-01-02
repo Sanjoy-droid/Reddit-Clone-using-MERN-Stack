@@ -1,105 +1,128 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import PostContext from "./postContext";
+
 const PostState = (props) => {
   const host = "http://localhost:5000";
-  const postInitials = [
-    {
-      _id: "6564a2be8060563a68e56d28",
-      user: "655f6488d242e06ebc52cd35",
-      title: "5 Productivity Hacks to Conquer Your Day",
-      description: "Unlock hidden productivity with these unconventional tips.",
-      tag: "productivity, time management, life hacks",
-      date: "2023-11-27T14:07:58.407Z",
-      __v: 0,
-    },
-    {
-      _id: "6564a2bf8060563a68e56d29",
-      user: "655f6488d242e06ebc52cd35",
-      title: "The Hidden Dangers of 'Perfect' Posture",
-      description:
-        "Is perfect posture overrated? Explore surprising truths about body mechanics.",
-      tag: "health, posture, ergonomics",
-      date: "2023-11-28T11:23:05.123Z",
-      __v: 0,
-    },
-    {
-      _id: "6564a2c08060563a68e56d2a",
-      user: "655f6488d242e06ebc52cd35",
-      title: "Coding for Beginners: The Ultimate Guide",
-      description:
-        "Unlock your coding potential with this beginner-friendly roadmap.",
-      tag: "coding, programming, software development",
-      date: "2023-11-29T08:45:12.876Z",
-      __v: 0,
-    },
-    {
-      _id: "6564a2c18060563a68e56d2b",
-      user: "655f6488d242e06ebc52cd35",
-      title: "5 Breathtaking Destinations Off the Beaten Path",
-      description:
-        "Escape the crowds and discover hidden gems around the globe.",
-      tag: "travel, adventure, hidden destinations",
-      date: "2023-11-30T16:32:45.019Z",
-      __v: 0,
-    },
-    {
-      _id: "6564a2c28060563a68e56d2c",
-      user: "655f6488d242e06ebc52cd35",
-      title: "How to Craft a Resume That Gets Noticed",
-      description:
-        "Land your dream job with a resume that stands out from the competition.",
-      tag: "career, resume, job search",
-      date: "2023-12-01T13:15:38.954Z",
-      __v: 0,
-    },
-    {
-      _id: "6564a2c38060563a68e56d2d",
-      user: "655f6488d242e06ebc52cd35",
-      title: "The Psychology of Color: How Colors Influence Your Mood",
-      description:
-        "Discover the hidden power of colors and their impact on your emotions.",
-      tag: "psychology, color, emotions",
-      date: "2023-12-02T10:02:25.642Z",
-      __v: 0,
-    },
-  ];
+  const postInitials = [];
 
   const [posts, setPosts] = useState(postInitials);
 
+  const navigate = useNavigate();
+
+  const getAuthToken = () => {
+    return localStorage.getItem("token");
+  };
+
   // Fetch all Posts
-  // const getPost = async () => {
-  //   //  API Call
-  //   const response = await fetch(`${host}/api/auth/login`, {
-  //     method: "POST",
-  //     // mode: "cors", // no-cors, *cors, same-origin
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   const json = await response.json();
-  //   console.log(json);
-  // };
+  const getPost = async () => {
+    //  API Call
+    const response = await fetch(`${host}/api/post/fetchallposts`, {
+      method: "GET",
+      // mode: "cors", // no-cors, *cors, same-origin
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+    setPosts(json);
+  };
 
   // Add a Post
-  // const addPost = async (title, description, tag) => {
-  //   // Todo : API Call
-  //   const response = await fetch(`${host}/api/post/addpost`, {
-  //     method: "POST",
-  //     // mode: "cors", // no-cors, *cors, same-origin
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ title, description, tag }),
-  //   });
-  //   // const json = response.json();
-  //   console.log("adding new note");
-  // };
-  // setPosts(posts.push(postInitials));
+  const addPost = async (title, description, tag) => {
+    try {
+      const authToken = getAuthToken();
+      if (!authToken) {
+        navigate("/login");
+        return;
+      }
+
+      const response = await fetch(`${host}/api/post/addpost`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken,
+        },
+        body: JSON.stringify({ title, description, tag }),
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Failed to add a post: ${errorMessage}`);
+      }
+
+      const newPost = await response.json();
+      setPosts((prevPosts) => [...prevPosts, newPost]); // Update state correctly
+    } catch (error) {
+      console.error("Error:", error.message);
+      // Handle the error as needed
+    }
+  };
 
   // Delete a Post
 
-  const deletePost = () => {};
-  // Todo : API Call
+  const getUserIdFromToken = () => {
+    const authToken = getAuthToken();
+    if (!authToken) {
+      return null;
+    }
+
+    try {
+      // Assuming your token is a JWT and it contains a 'sub' claim for the user ID
+      const tokenData = JSON.parse(atob(authToken.split(".")[1]));
+      console.log("Decoded token data:", tokenData);
+
+      const userId = tokenData.user?.id;
+      console.log("User ID from token:", userId);
+      return userId;
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  };
+  // Delete Post Api Call
+  const deletePost = async (postId, postUserId) => {
+    try {
+      const authToken = getAuthToken();
+      if (!authToken) {
+        navigate("/login");
+        return;
+      }
+      // Check if the authenticated user is the owner of the post
+      const currentUserId = getUserIdFromToken();
+      console.log("Current user ID:", currentUserId);
+      console.log("Post user ID:", postUserId);
+
+      if (currentUserId !== postUserId) {
+        props.showAlert("You can only delete your own posts", "error");
+        return;
+      }
+
+      // Make an API call to delete the post
+      const response = await fetch(
+        `http://localhost:5000/api/post/deletepost/${postId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken, // Assuming you store the authentication token in local storage
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Post deleted successfully:", data.post);
+        // Implement any additional logic or UI updates after successful deletion
+      } else {
+        const errorText = await response.text(); // Get the error message as text
+        console.error("Error deleting post:", errorText || "Unknown error");
+        // Implement error handling or display error messages to the user
+      }
+    } catch (error) {
+      console.error("API call error:", error);
+      // Implement error handling for unexpected errors
+    }
+  };
 
   // Edit a Post
   const editPost = async (id, title, description, tag) => {
@@ -115,8 +138,77 @@ const PostState = (props) => {
     // return response.json();
   };
 
+  // Retrieve the auth token from local storage
+
+  // API Call for UpVote increment
+  const upVoteCount = async (id) => {
+    const authToken = getAuthToken();
+    if (!authToken) {
+      navigate("/login");
+    }
+    try {
+      const response = await fetch(`${host}/api/post/upvote/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to increment upvote count");
+      }
+
+      const data = await response.json();
+      // console.log("Upvote count:", data.upvote);
+      return data.upvote;
+    } catch (error) {
+      console.error("Error:", error.message);
+      // Handle the error as needed
+    }
+  };
+
+  // API Call for Down Vote increment
+
+  const downVoteCount = async (id) => {
+    const authToken = getAuthToken();
+    if (!authToken) {
+      navigate("/login");
+    }
+    try {
+      const response = await fetch(`${host}/api/post/downvote/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to increment upvote count");
+      }
+
+      const data = await response.json();
+      // console.log("Upvote count:", data.upvote);
+      return data.downvote;
+    } catch (error) {
+      console.error("Error:", error.message);
+      // Handle the error as needed
+    }
+  };
+
   return (
-    <PostContext.Provider value={{ posts, deletePost, editPost }}>
+    <PostContext.Provider
+      value={{
+        posts,
+        getPost,
+        addPost,
+        deletePost,
+        editPost,
+        upVoteCount,
+        downVoteCount,
+      }}
+    >
       {props.children}
     </PostContext.Provider>
   );

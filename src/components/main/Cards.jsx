@@ -3,6 +3,7 @@ import tag from "../tag.png";
 const Cards = (props) => {
   const { post } = props;
 
+  // console.log(post.title);
   // title truncation
   const truncateTitle = (title, maxLength) => {
     if (title.length > maxLength) {

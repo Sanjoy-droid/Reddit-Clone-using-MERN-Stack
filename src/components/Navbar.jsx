@@ -8,9 +8,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
+  let navigate = useNavigate();
   // Hamburger Modal
   const [showHamburger, setShowHamburger] = useState(false);
 
@@ -22,6 +23,11 @@ const Navbar = (props) => {
   const [showMore, setShowMore] = useState(false);
   const toggleMore = () => {
     setShowMore(!showMore);
+  };
+  //Log Out Logic
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   return (
@@ -58,11 +64,20 @@ const Navbar = (props) => {
           />
         </div>
         {/* Login Button */}
-        <Link to="/login">
-          <div className=" login w-[5rem] h-[2.6rem] bg-[#d44612] text-white  font-medium flex justify-center items-center text-sm rounded-full mx-2 cursor-pointer hover:bg-[#d44612bd]">
-            Log In
-          </div>
-        </Link>
+        {!localStorage.getItem("token") ? (
+          <Link to="/login">
+            <button className=" login w-[5rem] h-[2.6rem] bg-[#d44612] text-white  font-medium flex justify-center items-center text-sm rounded-full mx-2 cursor-pointer hover:bg-[#d44612bd]">
+              Log In
+            </button>
+          </Link>
+        ) : (
+          <button
+            className="btn w-[5rem] h-[2.6rem] bg-[#d44612] text-white  font-medium flex justify-center items-center text-sm rounded-full mx-2 cursor-pointer hover:bg-[#d44612bd]"
+            onClick={handleLogout}
+          >
+            Log Out
+          </button>
+        )}
 
         {/* More,  three dots */}
 

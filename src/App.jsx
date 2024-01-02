@@ -7,14 +7,29 @@ import PostState from "./context/posts/PostState";
 import Test from "./components/main/Test";
 import LoginModal from "./components/main/LoginModal";
 import SignupModal from "./components/main/SignupModal";
+import { useState } from "react";
+import Alert from "./components/main/Alert";
+import AddPost from "./components/main/AddPost";
 
 function App() {
+  const [alert, setAlert] = useState(null);
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type,
+    });
+    setTimeout(() => {
+      console.log("Timeout executed");
+      setAlert(null);
+    }, 1500);
+  };
   return (
     <>
-      <PostState>
-        <Router>
+      <Router>
+        <PostState showAlert={showAlert}>
+          <Alert alert={alert} />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home showAlert={showAlert} />} />
             <Route exact path="/postitems/:id" element={<PostItems />} />
 
             <Route
@@ -26,13 +41,24 @@ function App() {
                 </>
               }
             />
-            <Route exact path="/login" element={<LoginModal />} />
-            <Route exact path="/signup" element={<SignupModal />} />
-
-            <Route exact path="/togin" element={<Test />} />
+            <Route
+              exact
+              path="/login"
+              element={<LoginModal showAlert={showAlert} />}
+            />
+            <Route
+              exact
+              path="/signup"
+              element={<SignupModal showAlert={showAlert} />}
+            />
+            <Route
+              exact
+              path="/addpost"
+              element={<AddPost showAlert={showAlert} />}
+            />
           </Routes>
-        </Router>
-      </PostState>
+        </PostState>
+      </Router>
     </>
   );
 }

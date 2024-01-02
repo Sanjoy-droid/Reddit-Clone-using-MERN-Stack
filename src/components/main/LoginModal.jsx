@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import postContext from "../../context/posts/postContext";
-import { useNavigate } from "react-router-dom";
 import SignupModal from "./SignupModal";
 
-const LoginModal = () => {
+const LoginModal = (props) => {
   // useEffect(() => {
   //   // Add or remove a class to the body based on the modal visibility
   //   document.body.style.overflow = showLogin ? "hidden" : "auto";
@@ -25,7 +24,7 @@ const LoginModal = () => {
   // }, []);
 
   const [credentials, setCredentials] = useState({ email: "", password: "" });
-
+  let navigate = useNavigate();
   // onsubmit interactions
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,12 +39,19 @@ const LoginModal = () => {
         password: credentials.password,
       }),
     });
-    const json = await response.json();
-    console.log(json);
-    if (json.success) {
-      localStorage.setItem("token", json.authtoken);
+    if (response.ok) {
+      const json = await response.json();
+      console.log("Server Response: ", json); // log response
+      if (json.success) {
+        const authToken = json.authToken;
+        localStorage.setItem("token", authToken);
+        props.showAlert("Logged In Successfully", "success");
+        navigate("/");
+      } else {
+        props.showAlert("Invalid Details", "Error");
+      }
     } else {
-      alert("Invalid token");
+      props.showAlert("HTTP Error", "error");
     }
   };
 
@@ -62,16 +68,15 @@ const LoginModal = () => {
         </>
 
         {/* Login Modal */}
-        <div
-          className="Login-modal w-[32rem] h-[39rem] fixed right-[15rem] top-[1rem] bg-[#0a1122] cursor-default rounded-3xl"
-          // onClick={(e) => {
-          //   e.stopPropagation();
-          // }}
-        >
+        <div className="Login-modal w-[32rem] h-[39rem] fixed right-[15rem] top-[1rem] bg-[#0a1122] cursor-default rounded-3xl">
           <form onSubmit={handleSubmit}>
             {/* Close Button */}
 
-            <div className="close-btn text-white bg-gray-700 rounded-full w-8 h-8 mt-10 ml-[28rem] flex justify-center items-center hover:bg-gray-800 cursor-pointer">
+            {/* Go Home on clicking Close Button */}
+            <div
+              className="close-btn text-white bg-gray-700 rounded-full w-8 h-8 mt-10 ml-[28rem] flex justify-center items-center hover:bg-gray-800 cursor-pointer"
+              onClick={() => navigate("/")}
+            >
               <FontAwesomeIcon icon={faXmark} size="xl" />
             </div>
 

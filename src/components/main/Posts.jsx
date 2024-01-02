@@ -1,4 +1,4 @@
-import tag from "../tag.png";
+import Tag from "../tag.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUpLong,
@@ -6,31 +6,74 @@ import {
   faMessage,
   faArrowUpFromBracket,
   faPlus,
+  faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../Navbar";
-import { useParams } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import postContext from "../../context/posts/postContext";
+
+// Utility function for handling upvote
+const handleUpvote = async (event, postId, upVoteCount, getPost) => {
+  event.preventDefault();
+  try {
+    const newUpvoteCount = await upVoteCount(postId);
+    getPost();
+    return newUpvoteCount;
+  } catch (error) {
+    console.error("Error:", error.message);
+    // Handle the error as needed
+  }
+};
+// Utility function for handling downvote
+const handleDownvote = async (event, postId, downVoteCount, getPost) => {
+  event.preventDefault();
+  try {
+    const newDownvoteCount = await downVoteCount(postId);
+    getPost();
+    return newDownvoteCount;
+  } catch (error) {
+    console.error("Error:", error.message);
+    // Handle the error as needed
+  }
+};
 
 const Post = (props) => {
   const { post } = props;
+  const context = useContext(postContext);
+  const { getPost, upVoteCount, downVoteCount, deletePost } = context;
 
-  const upVoteCount = parseInt(post.upVote);
-  const downVoteCount = parseInt(post.downVote);
-  const commentCount = parseInt(post.comment);
-
+  let navigate = useNavigate();
+  // Utility for Delete Post
+  const handleDelete = async (
+    event,
+    postId,
+    postUserId,
+    getPost,
+    deletePost
+  ) => {
+    event.preventDefault();
+    if (!postId) {
+      console.error("Post ID is missing!");
+      return;
+    }
+    await deletePost(postId, postUserId);
+    // props.showAlert("Post Deleted", "success");
+    navigate("/");
+  };
   return (
     <>
-      <div className="big-posts    text-gray-300 pl-4    rounded-2xl cursor-pointer hover:bg-gray-800 h-[31rem]   w-[38rem] mt-1">
+      <div className="big-posts    text-gray-300 pl-4    rounded-2xl  bg-gray-800 h-[31rem]   w-[38rem] m-6">
         <div className="credit-bar flex pt-4 ">
           <img
-            src={tag}
+            src={Tag}
             alt=""
             className="w-6 h-6 rounded-full cursor-pointer"
           />
           <p className="text-sm ml-2 cursor-pointer hover:text-blue-300">
-            r/{post.tag}
+            {post && post.tag && <span>r/{post.tag}</span>}
           </p>
+
           <p className="text-gray-400 text-sm ml-2 cursor-pointer ">
             . 5 hr. ago
           </p>
@@ -52,25 +95,34 @@ const Post = (props) => {
 
         {/* interactions  */}
 
-        <div className="interactons mt-4 flex itmes-center ml-1">
+        <div className="interactons mt-4 flex itmes-center ml-1 ">
           {/* votes section */}
 
-          <div className="votes bg-gray-600 w-20 h-8 flex justify-evenly items-center rounded-2xl ">
-            <FontAwesomeIcon className="hover:text-red-700" icon={faUpLong} />
+          <div className="votes bg-gray-600 w-24 h-8 flex justify-evenly items-center rounded-2xl  ">
+            <FontAwesomeIcon
+              className=" hover:text-red-700"
+              onClick={(e) => handleUpvote(e, post._id, upVoteCount, getPost)}
+              icon={faUpLong}
+            />
+            {post && post.upvote && <p className="text-sm">{post.upvote}</p>}
 
-            <p className="text-sm">{upVoteCount}</p>
             <FontAwesomeIcon
               className="hover:text-violet-700"
+              onClick={(e) =>
+                handleDownvote(e, post._id, downVoteCount, getPost)
+              }
               icon={faDownLong}
             />
-            <p className="text-sm">{downVoteCount}</p>
+            {post && post.downvote && (
+              <p className="text-sm">{post.downvote}</p>
+            )}
           </div>
 
           {/* comment section */}
 
           <div className="comment h-8 w-16 ml-4 bg-gray-600 rounded-2xl flex justify-evenly items-center hover:bg-gray-500">
             <FontAwesomeIcon icon={faMessage} />
-            <p className="text-sm">{commentCount}</p>
+            <p className="text-sm">58</p>
           </div>
 
           {/* share section */}
@@ -79,12 +131,21 @@ const Post = (props) => {
             <FontAwesomeIcon icon={faArrowUpFromBracket} />
             <p className="text-sm">Share</p>
           </div>
+          {/* Delete Section */}
+          <div
+            className="delete h-8 w-10 bg-gray-500  rounded-md flex justify-evenly items-center hover:bg-red-700 ml-56"
+            onClick={(e) =>
+              handleDelete(e, post._id, post.user, getPost, deletePost)
+            }
+          >
+            <FontAwesomeIcon icon={faTrashCan} />
+          </div>
         </div>
       </div>
       {/* Small Line  */}
       <div
         className="line-1 
-           border-b border-gray-600 mt-2 w-[38rem] "
+           border-b border-gray-600 ml-6 w-[38rem] "
       ></div>
     </>
   );
@@ -110,7 +171,7 @@ const Comment = () => {
       <div className="comments mt-8 w-[38rem]">
         <div className="flex ">
           <img
-            src={tag}
+            src={Tag}
             alt=""
             className="w-8 h-8 rounded-full cursor-pointer"
           />
@@ -146,32 +207,24 @@ const Comment = () => {
 };
 
 const Posts = () => {
-  useEffect(() => {
-    // Scroll to the top of the page when the component mounts
-    window.scrollTo(0, 0);
-  }, []); // The empty dependency array ensures this effect runs only once when the component mounts
-
   const context = useContext(postContext);
-  const { posts, setPosts } = context;
-
+  const { posts, getPost } = context;
   const { id } = useParams();
+  const post = posts.find((p) => p._id === id);
+  useEffect(() => {
+    window.scroll(0, 0);
+    if (posts.length === 0) {
+      getPost();
+    }
+  }, [id]);
 
-  const post = posts.find((post) => post._id === id);
   return (
     <>
       <div className="bg-gradient-to-r from-gray-900 to-gray-700 h-[500vh] ">
         <Navbar title="reddit" />
-
+        <Post post={post} />
         <div className="p-8">
-          <Post post={post} />
-
-          {/* Add Comments */}
           <AddComment />
-
-          {/* Comments */}
-          <Comment />
-          <Comment />
-
           <Comment />
         </div>
       </div>
