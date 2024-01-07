@@ -4,7 +4,6 @@ import Home from "./components/main/Home";
 import PostItems from "./components/main/PostItems";
 import Posts from "./components/main/Posts";
 import PostState from "./context/posts/PostState";
-import Test from "./components/main/Test";
 import LoginModal from "./components/main/LoginModal";
 import SignupModal from "./components/main/SignupModal";
 import { useState } from "react";

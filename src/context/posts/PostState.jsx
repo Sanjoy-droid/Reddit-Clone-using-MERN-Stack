@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import PostContext from "./postContext";
 
 const PostState = (props) => {
-  const host = "http://localhost:5000";
+  const host = import.meta.env.VITE_URL;
   const postInitials = [];
 
   const [posts, setPosts] = useState(postInitials);
@@ -32,6 +32,7 @@ const PostState = (props) => {
   const addPost = async (title, description, tag) => {
     try {
       const authToken = getAuthToken();
+      console.log(authToken);
       if (!authToken) {
         navigate("/login");
         return;
@@ -52,7 +53,8 @@ const PostState = (props) => {
       }
 
       const newPost = await response.json();
-      setPosts((prevPosts) => [...prevPosts, newPost]); // Update state correctly
+      setPosts(posts.concat(newPost));
+      // setPosts((prevPosts) => [...prevPosts, newPost]); // Update state correctly
     } catch (error) {
       console.error("Error:", error.message);
       // Handle the error as needed
@@ -99,16 +101,13 @@ const PostState = (props) => {
       }
 
       // Make an API call to delete the post
-      const response = await fetch(
-        `http://localhost:5000/api/post/deletepost/${postId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": authToken, // Assuming you store the authentication token in local storage
-          },
-        }
-      );
+      const response = await fetch(`${host}/api/post/deletepost/${postId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken, // Assuming you store the authentication token in local storage
+        },
+      });
       if (response.ok) {
         const data = await response.json();
         console.log("Post deleted successfully:", data.post);

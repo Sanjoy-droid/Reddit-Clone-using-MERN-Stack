@@ -13,11 +13,12 @@ const AddPost = (props) => {
     tag: "",
   });
   const handleClick = async (e) => {
+    console.log("before prevent default");
     e.preventDefault();
     try {
+      console.log("Before addPost");
       await addPost(post.title, post.description, post.tag);
-      await getPost();
-      getPost();
+      console.log("After addPost");
       props.showAlert("Post Added Successfully", "success");
       navigate("/");
     } catch (error) {
@@ -32,7 +33,7 @@ const AddPost = (props) => {
     <div className="bg-gradient-to-r from-gray-900 to-gray-700 h-screen flex justify-center py-4">
       <div className="w-[50rem]  bg-gray-800 p-8 rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold text-white">Create a Post</h2>
-        <form className="text-white">
+        <form className="text-white" onSubmit={handleClick}>
           {/* Title */}
           <div className="mt-4">
             <label htmlFor="title" className="block text-lg font-medium">
@@ -83,9 +84,8 @@ const AddPost = (props) => {
 
           {/* Submit Button */}
           <button
-            type="button"
+            type="submit"
             className="w-full bg-orange-900 text-white font-semibold py-2 px-4 rounded-xl mt-4 hover:bg-orange-700 "
-            onClick={handleClick}
           >
             Add Post
           </button>
