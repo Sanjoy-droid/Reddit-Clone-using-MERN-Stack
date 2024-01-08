@@ -15,8 +15,10 @@ const SignupModal = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const host = import.meta.env.VITE_URL;
+
     const { name, email, password } = credentials;
-    const response = await fetch("http://localhost:5000/api/auth/createuser", {
+    const response = await fetch(`${host}/api/auth/createuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +30,7 @@ const SignupModal = (props) => {
       }),
     });
     const json = await response.json();
-    console.log(json);
+    // console.log(json);
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
       props.showAlert("Account Created Successfully", "success");
@@ -81,8 +83,8 @@ const SignupModal = (props) => {
                     name="name"
                     placeholder="Choose Your Username"
                     autoComplete="current-username"
-                    value={credentials.name} // Use `value` to keep it in sync with state
-                    onChange={onChange} // Add the onChange handler
+                    value={credentials.name}
+                    onChange={onChange}
                   />
                 </div>
                 {/* Email */}

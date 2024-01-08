@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
-import postContext from "../../context/posts/postContext";
-import SignupModal from "./SignupModal";
 
 const LoginModal = (props) => {
   // useEffect(() => {
@@ -22,6 +20,7 @@ const LoginModal = (props) => {
   // useEffect(() => {
   //   getPost();
   // }, []);
+  const host = import.meta.env.VITE_URL;
 
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   let navigate = useNavigate();
@@ -29,7 +28,7 @@ const LoginModal = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/auth/login", {
+    const response = await fetch(`${host}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
