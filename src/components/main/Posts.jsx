@@ -22,7 +22,6 @@ const handleUpvote = async (event, postId, upVoteCount, getPost) => {
     return newUpvoteCount;
   } catch (error) {
     console.error("Error:", error.message);
-    // Handle the error as needed
   }
 };
 // Utility function for handling downvote
@@ -34,12 +33,12 @@ const handleDownvote = async (event, postId, downVoteCount, getPost) => {
     return newDownvoteCount;
   } catch (error) {
     console.error("Error:", error.message);
-    // Handle the error as needed
   }
 };
 
 const Post = (props) => {
-  const { post } = props;
+  const { post, showAlert } = props;
+
   const context = useContext(postContext);
   const { getPost, upVoteCount, downVoteCount, deletePost } = context;
 
@@ -57,9 +56,12 @@ const Post = (props) => {
       console.error("Post ID is missing!");
       return;
     }
-    await deletePost(postId, postUserId);
-    // props.showAlert("Post Deleted", "success");
-    navigate("/");
+
+    const deletionSuccess = await deletePost(postId, postUserId);
+    if (deletionSuccess) {
+      await getPost();
+      navigate("/");
+    }
   };
   return (
     <>
@@ -206,7 +208,7 @@ const Comment = () => {
   );
 };
 
-const Posts = () => {
+const Posts = (props) => {
   const context = useContext(postContext);
   const { posts, getPost } = context;
   const { id } = useParams();
@@ -216,13 +218,13 @@ const Posts = () => {
     if (posts.length === 0) {
       getPost();
     }
-  }, [id]);
+  }, [id, getPost, posts]);
 
   return (
     <>
       <div className="bg-gradient-to-r from-gray-900 to-gray-700 h-[500vh] ">
         <Navbar title="reddit" />
-        <Post post={post} />
+        <Post post={post} showAlert={props.showAlert} />
         <div className="p-8">
           <AddComment />
           <Comment />

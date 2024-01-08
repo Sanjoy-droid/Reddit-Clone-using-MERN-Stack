@@ -32,7 +32,6 @@ const PostState = (props) => {
   const addPost = async (title, description, tag) => {
     try {
       const authToken = getAuthToken();
-      console.log(authToken);
       if (!authToken) {
         navigate("/login");
         return;
@@ -61,8 +60,6 @@ const PostState = (props) => {
     }
   };
 
-  // Delete a Post
-
   const getUserIdFromToken = () => {
     const authToken = getAuthToken();
     if (!authToken) {
@@ -72,10 +69,8 @@ const PostState = (props) => {
     try {
       // Assuming your token is a JWT and it contains a 'sub' claim for the user ID
       const tokenData = JSON.parse(atob(authToken.split(".")[1]));
-      console.log("Decoded token data:", tokenData);
 
       const userId = tokenData.user?.id;
-      console.log("User ID from token:", userId);
       return userId;
     } catch (error) {
       console.error("Error decoding token:", error);
@@ -92,9 +87,6 @@ const PostState = (props) => {
       }
       // Check if the authenticated user is the owner of the post
       const currentUserId = getUserIdFromToken();
-      console.log("Current user ID:", currentUserId);
-      console.log("Post user ID:", postUserId);
-
       if (currentUserId !== postUserId) {
         props.showAlert("You can only delete your own posts", "error");
         return;
@@ -110,15 +102,16 @@ const PostState = (props) => {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log("Post deleted successfully:", data.post);
-        // Implement any additional logic or UI updates after successful deletion
+        props.showAlert("Post Deleted", "success");
+        return true;
       } else {
         const errorText = await response.text(); // Get the error message as text
         console.error("Error deleting post:", errorText || "Unknown error");
-        // Implement error handling or display error messages to the user
+        return false;
       }
     } catch (error) {
       console.error("API call error:", error);
+      return false;
       // Implement error handling for unexpected errors
     }
   };

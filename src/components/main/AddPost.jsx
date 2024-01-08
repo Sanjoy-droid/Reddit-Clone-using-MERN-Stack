@@ -13,12 +13,9 @@ const AddPost = (props) => {
     tag: "",
   });
   const handleClick = async (e) => {
-    console.log("before prevent default");
     e.preventDefault();
     try {
-      console.log("Before addPost");
       await addPost(post.title, post.description, post.tag);
-      console.log("After addPost");
       props.showAlert("Post Added Successfully", "success");
       navigate("/");
     } catch (error) {

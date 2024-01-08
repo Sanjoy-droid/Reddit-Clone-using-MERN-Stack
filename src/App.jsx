@@ -36,7 +36,7 @@ function App() {
               path="/postitems/posts/:id"
               element={
                 <>
-                  <Posts />
+                  <Posts showAlert={showAlert} />
                 </>
               }
             />
