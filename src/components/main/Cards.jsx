@@ -33,12 +33,16 @@ const Cards = (props) => {
 
   return (
     <div className="card w-[18rem] h-52 rounded-2xl cursor-pointer bg-violet-950 text-white">
-      <div className="content pt-4 pl-4 flex-col justify-evenly">
-        <h1 className="title text-lg font-bold  w-fit h-fit">{postTitle}</h1>
-        <p className="desc text-base overflow-hidden text-ellipsis h-[7em]">
-          {postDescription}
-        </p>
-        <div className="tag flex  mt-2  ">
+      <div className="content py-3 px-4 flex-col">
+        <div className="h-[4em] ">
+          <h1 className="title text-lg font-bold  w-fit  ">{postTitle}</h1>
+        </div>
+        <div className="h-[6em]">
+          <p className="desc text-base overflow-hidden text-ellipsis  ">
+            {postDescription}
+          </p>
+        </div>
+        <div className="tag flex  mt-1 h-[2em]">
           <img src={tag} alt="" className="w-6 h-6 rounded-full" />
           <p className="text-sm ml-2 text-ellipsis overflow-hidden">
             r/{postTag}

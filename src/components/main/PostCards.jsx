@@ -38,11 +38,9 @@ const PostCard = (props) => {
             className="w-6 h-6 rounded-full cursor-pointer"
           />
           <p className="text-sm ml-2 cursor-pointer hover:text-blue-300">
-            r/health
+            r/{post.tag}
           </p>
-          <p className="text-gray-400 text-sm ml-2 cursor-pointer ">
-            . 5 hr. ago
-          </p>
+          <p className="text-gray-400 text-sm ml-2 cursor-pointer ">5 hr ago</p>
           <button className="join ml-[21rem] bg-blue-800 text-sm font-semibold h-6 w-12 rounded-full hover:bg-blue-600">
             Join
           </button>
