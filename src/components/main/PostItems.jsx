@@ -1,6 +1,5 @@
 import Navbar from "../Navbar";
 import tag from "../tag.png";
-// import Posts from "./Posts";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import postContext from "../../context/posts/postContext";
@@ -80,7 +79,7 @@ const SmallPost = (props) => {
 
         <div className="flex mt-3">
           <p className="text-gray-400 text-sm ml-2 cursor-pointer ">
-            107 votes
+            {post.upvote + post.downvote} votes
           </p>
           <p className="text-gray-400 text-sm ml-2 cursor-pointer ">
             . 12 comments

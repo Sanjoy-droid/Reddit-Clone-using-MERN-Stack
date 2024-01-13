@@ -54,7 +54,7 @@ const SignupModal = (props) => {
 
         {/* Sign Up Modal */}
         <div
-          className="Login-modal w-[32rem] h-[39rem] fixed right-[15rem] top-[1rem] bg-[#0a1122] cursor-default rounded-3xl"
+          className="signup-modal w-[32rem] h-[36rem] fixed right-[15rem] top-[1rem] bg-[#0a1122] cursor-default rounded-3xl"
           // onClick={(e) => {
           //   e.stopPropagation();
           // }}

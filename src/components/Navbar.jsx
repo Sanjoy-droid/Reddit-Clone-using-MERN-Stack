@@ -1,9 +1,6 @@
-// import Modal from "./main/Modal";
 import logo from "../components/download.png";
 import HamburgerModal from "../components/main/HamburgerModal";
-import LoginModal from "../components/main/LoginModal";
 import MoreModal from "../components/main/MoreModal";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
@@ -11,6 +8,7 @@ import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
+  const { post, showAlert } = props;
   let navigate = useNavigate();
   // Hamburger Modal
   const [showHamburger, setShowHamburger] = useState(false);
@@ -27,6 +25,7 @@ const Navbar = (props) => {
   //Log Out Logic
   const handleLogout = () => {
     localStorage.removeItem("token");
+    showAlert("Logged Out Successfully", "success");
     navigate("/");
   };
 
@@ -47,8 +46,15 @@ const Navbar = (props) => {
           />
         </button>
         {/* Logo */}
-        <img src={logo} alt="" className="w-9 cursor-pointer rounded-full" />
-        <p className="mx-2 text-2xl cursor-pointer text-white">{props.title}</p>
+        <div
+          className="cursor-pointer flex"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <img src={logo} alt="" className="w-9 rounded-full" />
+          <p className="mx-2 text-2xl  text-white">{props.title}</p>
+        </div>
         {/* Serach Section */}
         <div
           className="nav-search flex mx-2 w-[44rem] h-[42px] rounded-3xl
@@ -81,22 +87,21 @@ const Navbar = (props) => {
 
         {/* More,  three dots */}
 
-        <button
-          onClick={toggleMore}
-          className="three-dots  
-        cursor-pointer my-1 mr-2  h-10 w-10 flex justify-center items-center   hover:bg-gray-700   rounded-full   text-2xl   text-white"
-        >
-          <p className="pb-4">...</p>
-          <MoreModal toggleMore={toggleMore} showMore={showMore} />
-        </button>
+        {!localStorage.getItem("token") ? (
+          <button
+            onClick={toggleMore}
+            className="three-dots  
+        cursor-pointer my-1 mr-2  h-10 w-10 flex justify-center items-center   hover:bg-gray-600   rounded-full   text-2xl   text-white"
+          >
+            <p className="pb-4">...</p>
+            <MoreModal toggleMore={toggleMore} showMore={showMore} />
+          </button>
+        ) : null}
       </div>
 
       {/* Small Line  */}
 
-      <div
-        className="line-1 
-           border-b border-gray-400 mx-2 "
-      ></div>
+      <div className="line-1 border-b border-gray-400 mx-2 "></div>
     </>
   );
 };

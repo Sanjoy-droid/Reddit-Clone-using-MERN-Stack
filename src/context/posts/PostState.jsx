@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PostContext from "./postContext";
 
 const PostState = (props) => {
@@ -14,18 +14,26 @@ const PostState = (props) => {
     return localStorage.getItem("token");
   };
 
-  // Fetch all Posts
   const getPost = async () => {
-    //  API Call
-    const response = await fetch(`${host}/api/post/fetchallposts`, {
-      method: "GET",
-      // mode: "cors", // no-cors, *cors, same-origin
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const json = await response.json();
-    setPosts(json);
+    try {
+      // API Call
+      const response = await fetch(`${host}/api/post/fetchallposts`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch posts: ${response.statusText}`);
+      }
+
+      const json = await response.json();
+      setPosts(json);
+    } catch (error) {
+      console.error("Error fetching posts:", error.message);
+      // Handle the error as needed.
+    }
   };
 
   // Add a Post
@@ -53,10 +61,8 @@ const PostState = (props) => {
 
       const newPost = await response.json();
       setPosts(posts.concat(newPost));
-      // setPosts((prevPosts) => [...prevPosts, newPost]); // Update state correctly
     } catch (error) {
       console.error("Error:", error.message);
-      // Handle the error as needed
     }
   };
 
@@ -67,7 +73,6 @@ const PostState = (props) => {
     }
 
     try {
-      // Assuming your token is a JWT and it contains a 'sub' claim for the user ID
       const tokenData = JSON.parse(atob(authToken.split(".")[1]));
 
       const userId = tokenData.user?.id;
@@ -97,7 +102,7 @@ const PostState = (props) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": authToken, // Assuming you store the authentication token in local storage
+          "auth-token": authToken,
         },
       });
       if (response.ok) {
@@ -112,25 +117,45 @@ const PostState = (props) => {
     } catch (error) {
       console.error("API call error:", error);
       return false;
-      // Implement error handling for unexpected errors
     }
   };
 
-  // Edit a Post
+  // Update a Post
   const editPost = async (id, title, description, tag) => {
-    // Todo : API Call
-    //   const response = await fetch(url, {
-    //   method: "POST",
-    //   // mode: "cors", // no-cors, *cors, same-origin
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // });
-    // return response.json();
-  };
+    try {
+      const authToken = getAuthToken();
+      if (!authToken) {
+        navigate("/login");
+        return false;
+      }
+      // API Call
+      const response = await fetch(`${host}/api/post/updatepost/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken,
+        },
+        body: JSON.stringify({ title, description, tag }),
+      });
 
-  // Retrieve the auth token from local storage
+      if (response.ok) {
+        // Logic to edit the post
+        setPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post._id === id ? { ...post, title, description, tag } : post
+          )
+        );
+        return true;
+      } else {
+        const errorText = await response.text(); // Get the error message as text
+        console.error("Error editing post:", errorText || "Unknown error");
+        return false;
+      }
+    } catch (error) {
+      console.error("API call error:", error);
+      return false;
+    }
+  };
 
   // API Call for UpVote increment
   const upVoteCount = async (id) => {
@@ -152,11 +177,9 @@ const PostState = (props) => {
       }
 
       const data = await response.json();
-      // console.log("Upvote count:", data.upvote);
       return data.upvote;
     } catch (error) {
       console.error("Error:", error.message);
-      // Handle the error as needed
     }
   };
 
@@ -181,11 +204,9 @@ const PostState = (props) => {
       }
 
       const data = await response.json();
-      // console.log("Upvote count:", data.upvote);
       return data.downvote;
     } catch (error) {
       console.error("Error:", error.message);
-      // Handle the error as needed
     }
   };
 

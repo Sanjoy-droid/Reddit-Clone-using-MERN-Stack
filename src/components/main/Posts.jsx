@@ -1,4 +1,5 @@
 import Tag from "../tag.png";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUpLong,
@@ -7,11 +8,13 @@ import {
   faArrowUpFromBracket,
   faPlus,
   faTrashCan,
+  faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../Navbar";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import postContext from "../../context/posts/postContext";
+import EditPostModal from "./EditPostModal";
 
 // Utility function for handling upvote
 const handleUpvote = async (event, postId, upVoteCount, getPost) => {
@@ -37,6 +40,8 @@ const handleDownvote = async (event, postId, downVoteCount, getPost) => {
 };
 
 const Post = (props) => {
+  // const { id } = useParams();
+
   const { post, showAlert } = props;
 
   const context = useContext(postContext);
@@ -63,10 +68,16 @@ const Post = (props) => {
       navigate("/");
     }
   };
+
+  // Edit Post Modal Function
+  const [modal, setModal] = useState(false);
+  const toggleModal = () => {
+    setModal(!modal);
+  };
   return (
     <>
       <div className="big-posts    text-gray-300 pl-4    rounded-2xl  bg-gray-800 h-[31rem]   w-[38rem] m-6">
-        <div className="credit-bar flex pt-4 ">
+        <div className="credit-bar flex  pt-4 h-16 ">
           <img
             src={Tag}
             alt=""
@@ -79,6 +90,20 @@ const Post = (props) => {
           <p className="text-gray-400 text-sm ml-2 cursor-pointer ">
             . 5 hr. ago
           </p>
+          <div
+            className="edit h-8 w-10 bg-gray-500  rounded-md flex justify-evenly items-center hover:bg-violet-900 ml-[22rem]"
+            onClick={toggleModal}
+          >
+            <FontAwesomeIcon icon={faPenToSquare} />
+          </div>
+          {modal && (
+            <EditPostModal
+              toggleModal={toggleModal}
+              post={post}
+              showAlert={props.showAlert}
+              modal={modal}
+            />
+          )}
         </div>
 
         <div className="title">
@@ -185,9 +210,9 @@ const Comment = () => {
               </p>
             </div>
             <p className="comment-content mt-2 text-gray-300">
-              The puppy was playing and was in a playful mood. The puppy didn’t
-              even have its mouth open to go for a bite. What’s with everyone in
-              the comments saying the puppy was trying to bite ?
+              Wow, your post is a breath of fresh air! 🌈 The authenticity and
+              creativity you bring to your content are truly captivating. Keep
+              shining your light and inspiring us all! 🚀💖
             </p>
             <div className="votes flex h-12 w-20  justify-between items-center rounded-2xl text-white">
               <FontAwesomeIcon

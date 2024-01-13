@@ -56,7 +56,7 @@ const PostCard = (props) => {
         <div className="title">
           <p className="font-bold text-2xl text-white p-1">{postTitle}</p>
         </div>
-        <div className="desc h-[18rem] w-[97%] rounded-2xl bg-orange-950 p-4 mt-2 ">
+        <div className="desc h-[18rem] w-[97%] rounded-2xl bg-indigo-900 p-4 mt-2 ">
           {post.description}
         </div>
 
@@ -102,7 +102,7 @@ const PostCards = (props) => {
   // console.log(post.title);
   return (
     <>
-      <ul className="PostCards-section mx-6 mt-8 w-[55%] inline-block ">
+      <ul className="PostCards-section mx-6 mt-6 w-fit inline-block ">
         <li>
           {" "}
           <PostCard post={post} />

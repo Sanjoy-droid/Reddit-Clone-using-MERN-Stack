@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRightToBracket,
@@ -19,14 +19,16 @@ const MoreModal = ({ toggleMore, showMore }) => {
           className="more-section w-[18rem] h-[12rem] bg-[#0a1122] fixed left-[45rem] top-14 cursor-default rounded-lg "
         >
           <div className="my-4 mx-2">
-            <div className="flex px-3 h-12  hover:bg-gray-800 items-center  rounded-lg cursor-pointer">
-              <FontAwesomeIcon
-                className="text-sm"
-                icon={faArrowRightToBracket}
-                size="sm"
-              />
-              <p className="ml-4 text-sm">Log In / Sign Up </p>
-            </div>
+            <Link to="/login">
+              <div className="flex px-3 h-12  hover:bg-gray-800 items-center  rounded-lg cursor-pointer">
+                <FontAwesomeIcon
+                  className="text-sm"
+                  icon={faArrowRightToBracket}
+                  size="sm"
+                />
+                <p className="ml-4 text-sm">Log In / Sign Up </p>
+              </div>
+            </Link>
             <div className="flex h-12 px-3   hover:bg-gray-800 items-center  rounded-lg cursor-pointer">
               <FontAwesomeIcon icon={faBullhorn} />
               <p className="ml-4 text-sm">Advertise on Reddit</p>

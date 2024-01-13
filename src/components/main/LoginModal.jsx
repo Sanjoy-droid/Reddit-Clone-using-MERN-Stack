@@ -4,22 +4,10 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 
 const LoginModal = (props) => {
-  // useEffect(() => {
-  //   // Add or remove a class to the body based on the modal visibility
-  //   document.body.style.overflow = showLogin ? "hidden" : "auto";
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+  }, []);
 
-  //   // Cleanup function to reset the body style when the component is unmounted
-  //   return () => {
-  //     document.body.style.overflow = "auto";
-  //   };
-  // }, [showLogin]);
-
-  // submit function
-  // const context = useContext(postContext);
-  // const { posts } = context;
-  // useEffect(() => {
-  //   getPost();
-  // }, []);
   const host = import.meta.env.VITE_URL;
 
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -59,6 +47,31 @@ const LoginModal = (props) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
+  //Test User Login
+  const handleClick = async () => {
+    const response = await fetch(`${host}/api/auth/testlogin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const json = await response.json();
+      if (json.success) {
+        const authToken = json.authToken;
+        localStorage.setItem("token", authToken);
+        console.log(authToken);
+        props.showAlert("Logged In Successfully as Test User", "success");
+        navigate("/");
+      } else {
+        props.showAlert("Test Login Failed", "error");
+      }
+    } else {
+      props.showAlert("HTTP Error", "error");
+    }
+  };
+
   return (
     <>
       {/* Modal Overlay, Background of the Modal */}
@@ -68,22 +81,25 @@ const LoginModal = (props) => {
         </>
 
         {/* Login Modal */}
-        <div className="Login-modal w-[32rem] h-[39rem] fixed right-[15rem] top-[1rem] bg-[#0a1122] cursor-default rounded-3xl">
+        <div className="Login-modal w-[32rem] h-[36rem] fixed right-[15rem] top-[1rem] bg-[#0a1122] cursor-default rounded-3xl">
           <form onSubmit={handleSubmit}>
             {/* Close Button */}
 
             {/* Go Home on clicking Close Button */}
             <div
-              className="close-btn text-white bg-gray-700 rounded-full w-8 h-8 mt-10 ml-[28rem] flex justify-center items-center hover:bg-gray-800 cursor-pointer"
+              className="close-btn text-white bg-gray-700 rounded-full w-8 h-8 mt-[2rem] ml-[28rem]   flex justify-center items-center hover:bg-gray-800 cursor-pointer"
               onClick={() => navigate("/")}
             >
               <FontAwesomeIcon icon={faXmark} size="xl" />
             </div>
 
             <div className="Login p-12">
-              <h1 className="text-4xl flex justify-center text-white">
-                Log In
-              </h1>
+              <div className="w-full">
+                <h1 className="text-4xl flex justify-center text-white">
+                  Log In
+                </h1>
+              </div>
+
               <div className="inline-block ml-8 text-white">
                 <div className="bg-gray-700  mt-10 h-14 w-[22rem] rounded-3xl hover:bg-gray-800 outline-none">
                   <input
@@ -126,6 +142,12 @@ const LoginModal = (props) => {
               </Link>
             </div>
           </div>
+          <button
+            className="w-[20rem] h-[2.6rem] bg-gray-800  text-white font-medium flex justify-center items-center text-sm rounded-full mx-[6rem] my-6 cursor-pointer hover:bg-gray-600"
+            onClick={handleClick}
+          >
+            <p>Login as a Test User</p>
+          </button>
         </div>
       </div>
     </>

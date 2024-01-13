@@ -32,10 +32,10 @@ const Cards = (props) => {
   const postTag = truncateTag(post.tag, 20); // Truncate after 120 characters
 
   return (
-    <div className="card w-[18rem] h-52 rounded-2xl cursor-pointer bg-purple-300">
+    <div className="card w-[18rem] h-52 rounded-2xl cursor-pointer bg-violet-950 text-white">
       <div className="content pt-4 pl-4 flex-col justify-evenly">
         <h1 className="title text-lg font-bold  w-fit h-fit">{postTitle}</h1>
-        <p className="desc text-base overflow-hidden text-ellipsis ">
+        <p className="desc text-base overflow-hidden text-ellipsis h-[7em]">
           {postDescription}
         </p>
         <div className="tag flex  mt-2  ">
@@ -43,7 +43,7 @@ const Cards = (props) => {
           <p className="text-sm ml-2 text-ellipsis overflow-hidden">
             r/{postTag}
           </p>
-          <p className="ml-2 text-gray-700 text-sm"> and more</p>
+          <p className="ml-2 text-gray-300 text-sm"> and more</p>
         </div>
       </div>
     </div>

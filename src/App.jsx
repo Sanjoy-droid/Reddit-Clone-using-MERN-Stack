@@ -9,6 +9,7 @@ import SignupModal from "./components/main/SignupModal";
 import { useState } from "react";
 import Alert from "./components/main/Alert";
 import AddPost from "./components/main/AddPost";
+import EditPostModal from "./components/main/EditPostModal";
 
 function App() {
   const [alert, setAlert] = useState(null);
@@ -54,6 +55,12 @@ function App() {
               exact
               path="/addpost"
               element={<AddPost showAlert={showAlert} />}
+            />
+
+            <Route
+              exact
+              path="/editpost"
+              element={<EditPostModal showAlert={showAlert} />}
             />
           </Routes>
         </PostState>

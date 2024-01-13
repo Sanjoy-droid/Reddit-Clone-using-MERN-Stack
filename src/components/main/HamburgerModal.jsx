@@ -16,8 +16,11 @@ import {
   faLaptopCode,
 } from "@fortawesome/free-solid-svg-icons";
 import tag from "../tag.png";
+import { useNavigate } from "react-router-dom";
 
 const HamburgerModal = ({ toggleHamburger, showHamburger }) => {
+  let navigate = useNavigate();
+
   const [recentshow, setRecentShow] = useState(false);
   const toggleRecent = () => {
     setRecentShow(!recentshow);
@@ -57,7 +60,12 @@ const HamburgerModal = ({ toggleHamburger, showHamburger }) => {
             <ul className="text-gray-300  flex-col ">
               {/* Home and Trending */}
 
-              <div className="flex h-10 hover:bg-gray-800 items-center pl-4 rounded-lg cursor-pointer">
+              <div
+                className="flex h-10 hover:bg-gray-800 items-center pl-4 rounded-lg cursor-pointer"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
                 <FontAwesomeIcon icon={faHouse} />
                 <li className="ml-4">Home</li>
               </div>

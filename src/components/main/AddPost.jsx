@@ -27,8 +27,8 @@ const AddPost = (props) => {
     setPost({ ...post, [e.target.name]: e.target.value });
   };
   return (
-    <div className="bg-gradient-to-r from-gray-900 to-gray-700 h-screen flex justify-center py-4">
-      <div className="w-[50rem]  bg-gray-800 p-8 rounded-2xl shadow-md">
+    <div className="bg-gradient-to-r from-gray-900 to-gray-700 h-screen flex justify-center py-4  ">
+      <div className="w-[50rem] h-[36.5rem] bg-gray-800 p-6 rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold text-white">Create a Post</h2>
         <form className="text-white" onSubmit={handleClick}>
           {/* Title */}
@@ -62,7 +62,7 @@ const AddPost = (props) => {
           </div>
 
           {/* Tag */}
-          <div className="mt-2">
+          <div className="mt-1">
             <label
               htmlFor="tag"
               className="block text-lg font-medium text-white"
