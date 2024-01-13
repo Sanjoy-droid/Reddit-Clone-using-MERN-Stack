@@ -1,5 +1,5 @@
 import Navbar from "../Navbar";
-import tag from "../tag.png";
+import tag from "../../../public/tag.png";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import postContext from "../../context/posts/postContext";

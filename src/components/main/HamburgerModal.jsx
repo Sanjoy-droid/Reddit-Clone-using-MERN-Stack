@@ -15,7 +15,7 @@ import {
   faPlaneDeparture,
   faLaptopCode,
 } from "@fortawesome/free-solid-svg-icons";
-import tag from "../tag.png";
+import tag from "../../../public/tag.png";
 import { useNavigate } from "react-router-dom";
 
 const HamburgerModal = ({ toggleHamburger, showHamburger }) => {

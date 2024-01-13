@@ -1,4 +1,4 @@
-import tag from "../tag.png";
+import tag from "../../../public/tag.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUpLong,

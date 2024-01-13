@@ -1,4 +1,4 @@
-import logo from "../components/download.png";
+import logo from "../../public/download.png";
 import HamburgerModal from "../components/main/HamburgerModal";
 import MoreModal from "../components/main/MoreModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
