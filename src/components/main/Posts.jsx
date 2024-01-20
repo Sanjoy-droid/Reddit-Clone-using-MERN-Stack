@@ -11,7 +11,7 @@ import {
   faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../Navbar";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import postContext from "../../context/posts/postContext";
 import EditPostModal from "./EditPostModal";
@@ -71,9 +71,18 @@ const Post = (props) => {
 
   // Edit Post Modal Function
   const [modal, setModal] = useState(false);
+
+  // Edit Post Modal Function
   const toggleModal = () => {
-    setModal(!modal);
+    // Check if the user is logged in before allowing to edit
+    if (localStorage.getItem("token")) {
+      setModal(!modal);
+    } else {
+      // Redirect to the login page
+      navigate("/login");
+    }
   };
+
   return (
     <>
       <div className="big-posts    text-gray-300 pl-4    rounded-2xl  bg-gray-800 h-[31rem]   w-[38rem] m-6">
@@ -96,7 +105,7 @@ const Post = (props) => {
           >
             <FontAwesomeIcon icon={faPenToSquare} />
           </div>
-          {modal && (
+          {modal && localStorage.getItem("token") && (
             <EditPostModal
               toggleModal={toggleModal}
               post={post}

@@ -9,8 +9,14 @@ lerna-debug.log*
 
 node_modules
 .env
+
 dist
 dist-ssr
+src/components/main/Background.jsx
+src/components/main/MyModal.jsx
+src/components/main/Modal.jsx
+src/components/main/Test.jsx
+src/components/main/Test2.jsx
 *.local
 
 # Editor directories and files

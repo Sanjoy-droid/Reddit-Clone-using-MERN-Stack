@@ -8,7 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import React from "react";
-import AddPost from "./AddPost";
 
 const PostCard = (props) => {
   const { post } = props;
