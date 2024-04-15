@@ -20,13 +20,32 @@ Welcome to the Reddit Clone project! This web application serves as a simplified
 
 ## Technologies Used
 
-- **React:** The front-end of the application is built using React, providing a modular and efficient UI development environment.
+- **MongoDB:** MongoDB is used as the database to store restaurant and user data, providing a flexible and scalable solution for managing large datasets.
 
-- **React Router:** Utilized for client-side routing, enabling seamless navigation between different components.
+- **Express:** Express.js is utilized as the backend framework for building the RESTful API endpoints, enabling efficient handling of HTTP requests and responses.
 
-- **FontAwesome:** Icons from FontAwesome are integrated to enhance the visual appeal and usability of the application.
+- **Node.js:** Node.js serves as the server-side runtime environment, allowing JavaScript to be executed outside the browser and powering the backend functionality of the application.
 
-- **CSS (Tailwind CSS):** Styling is implemented using Tailwind CSS to ensure a responsive and visually appealing design.
+- **Vite:** Vite is employed as the build tool to facilitate fast and efficient development and bundling of the frontend assets, enhancing the performance and speed of the application.
+
+- **React:** The frontend of the application is developed using React, a popular JavaScript library for building user interfaces, enabling the creation of interactive and dynamic UI components.
+
+- **Context API:** React Context API is used for managing global state and sharing data between components, providing a centralized approach to state management and reducing prop drilling.
+
+- **React Router:** React Router is utilized for client-side routing, enabling navigation between different pages and components within the application without requiring a page reload.
+
+- **FontAwesome:** Icons from FontAwesome are integrated to enhance the visual appeal and usability of the application, providing a wide range of icons for various UI elements.
+
+- **Tailwind CSS:** Tailwind CSS is used for styling the application, providing utility-first CSS classes to streamline the styling process and create responsive and visually appealing designs.
+
+- **Git:** Git version control system is used for managing and tracking changes to the project codebase, facilitating collaboration and code management among team members.
+
+- **GitHub:** GitHub is utilized as the hosting platform for the project repository, enabling version control, collaboration, and code review workflows.
+
+- **npm:** npm is used as the package manager for installing, managing, and updating project dependencies, providing access to a vast ecosystem of JavaScript libraries and tools.
+
+- **RESTful API:** The application follows the REST architectural style for designing API endpoints, ensuring a standardized approach to resource management and interaction.
+
 
 ## Installation
 
