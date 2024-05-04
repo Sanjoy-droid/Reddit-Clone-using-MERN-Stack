@@ -32,7 +32,6 @@ const LoginModal = (props) => {
       if (json.success) {
         const authToken = json.authToken;
         localStorage.setItem("token", authToken);
-        console.log(authToken);
         props.showAlert("Logged In Successfully", "success");
         navigate("/");
       } else {
