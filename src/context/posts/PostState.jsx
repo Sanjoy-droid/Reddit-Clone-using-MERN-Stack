@@ -4,6 +4,7 @@ import PostContext from "./postContext";
 
 const PostState = (props) => {
   const host = import.meta.env.VITE_URL;
+
   const postInitials = [];
 
   const [posts, setPosts] = useState(postInitials);
