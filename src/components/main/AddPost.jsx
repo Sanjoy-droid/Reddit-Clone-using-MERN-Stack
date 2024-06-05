@@ -17,6 +17,7 @@ const AddPost = (props) => {
     try {
       await addPost(post.title, post.description, post.tag);
       props.showAlert("Post Added Successfully", "success");
+      getPost();
       navigate("/");
     } catch (error) {
       console.error("Error adding post:", error.message);
