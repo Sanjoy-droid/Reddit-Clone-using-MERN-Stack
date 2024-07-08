@@ -63,6 +63,7 @@ const HamburgerModal = ({ toggleHamburger, showHamburger }) => {
               <div
                 className="flex h-10 hover:bg-gray-800 items-center pl-4 rounded-lg cursor-pointer"
                 onClick={() => {
+                  toggleHamburger();
                   navigate("/");
                 }}
               >

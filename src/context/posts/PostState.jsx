@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import PostContext from "./postContext";
+import LoadingBar from "react-top-loading-bar";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const PostState = (props) => {
   const host = import.meta.env.VITE_URL;
@@ -15,7 +17,13 @@ const PostState = (props) => {
     return localStorage.getItem("token");
   };
 
+  // Implement Loading Bar
+  const [loading, setLoading] = useState(false);
+  const loadingBarRef = useRef(null);
+
   const getPost = async () => {
+    setLoading(true);
+    loadingBarRef.current.continuousStart();
     try {
       // API Call
       const response = await fetch(`${host}/api/post/fetchallposts`, {
@@ -34,6 +42,9 @@ const PostState = (props) => {
     } catch (error) {
       console.error("Error fetching posts:", error.message);
       // Handle the error as needed.
+    } finally {
+      setLoading(false);
+      loadingBarRef.current.complete();
     }
   };
 
@@ -221,9 +232,17 @@ const PostState = (props) => {
         editPost,
         upVoteCount,
         downVoteCount,
+        // updatePost,
       }}
     >
-      {props.children}
+      <LoadingBar color="#f11946" ref={loadingBarRef} />
+      {loading ? ( // <-- Conditionally render the spinner
+        <div className="flex justify-center items-center min-h-screen">
+          <ClipLoader color="#f11946" size={60} />
+        </div>
+      ) : (
+        props.children
+      )}
     </PostContext.Provider>
   );
 };
